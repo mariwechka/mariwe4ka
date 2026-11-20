@@ -1,0 +1,250 @@
+{
+"nocturne/hero": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/home": {
+"w": 1440,
+"h": 8243,
+"sizes": [
+1440,
+720
+]
+},
+"nocturne/catalog": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/list": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/pdp": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/pdp2": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/genres": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/weekly": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/mega": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/quick": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/collection": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/drawer": {
+"w": 1600,
+"h": 1000,
+"sizes": [
+1600,
+800
+]
+},
+"nocturne/m-home": {
+"w": 720,
+"h": 1558,
+"sizes": [
+720,
+360
+]
+},
+"nocturne/m-catalog": {
+"w": 720,
+"h": 1558,
+"sizes": [
+720,
+360
+]
+},
+"nocturne/m-filters": {
+"w": 720,
+"h": 1558,
+"sizes": [
+720,
+360
+]
+},
+"nocturne/m-pdp": {
+"w": 720,
+"h": 1558,
+"sizes": [
+720,
+360
+]
+},
+"nocturne/m-menu": {
+"w": 720,
+"h": 1558,
+"sizes": [
+720,
+360
+]
+},
+"vinyl-covers/grid": {
+"w": 1600,
+"h": 1600,
+"sizes": [
+1600,
+800
+]
+},
+"vinyl-covers/fan": {
+"w": 1600,
+"h": 978,
+"sizes": [
+1600,
+800
+]
+},
+"vinyl-covers/single": {
+"w": 1200,
+"h": 1200,
+"sizes": [
+1200,
+800
+]
+},
+"case-carousel/s01": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s02": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s03": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s04": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s05": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s06": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s07": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s08": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s09": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s10": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+},
+"case-carousel/s11": {
+"w": 1080,
+"h": 1350,
+"sizes": [
+1080,
+800
+]
+}
+}
