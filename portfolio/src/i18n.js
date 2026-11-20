@@ -38,7 +38,9 @@ module.exports = {
       aboutText: 'Дизайн для меня начинается с вопроса «зачем?», а заканчивается тем, что работает у живых людей на живых экранах.',
       aboutLink: 'Подробнее обо мне',
       servicesTitle: 'Чем могу <em>помочь</em>',
-      servicesLink: 'Все услуги'
+      servicesLink: 'Все услуги',
+      statement: ['Создаю', '#nocturne/m-home', 'сайты и интерфейсы,', '#vinyl-covers/single', 'визуальные системы', '#case-carousel/s05', 'и графику, которую', 'хочется рассматривать.'],
+      worksHint: 'Листайте — работы едут вбок'
     },
 
     works: {
@@ -142,7 +144,8 @@ module.exports = {
       formNote: 'Кнопка откроет ваше почтовое приложение с готовым письмом. Ничего не отправляется без вас.',
       formError: 'Напишите хотя бы пару слов о проекте',
       formSubject: 'Проект',
-      formHello: 'Здравствуйте!'
+      formHello: 'Здравствуйте!',
+      badge: 'Напишите мне • Обсудим проект • '
     },
 
     footer: { top: 'Наверх', rights: 'Все права защищены', made: 'Дизайн и код — автор сайта' },
@@ -184,7 +187,9 @@ module.exports = {
       aboutText: 'For me, design starts with the question “why?” and ends with something that works for real people on real screens.',
       aboutLink: 'More about me',
       servicesTitle: 'How I can <em>help</em>',
-      servicesLink: 'All services'
+      servicesLink: 'All services',
+      statement: ['I make', '#nocturne/m-home', 'websites and interfaces,', '#vinyl-covers/single', 'visual systems', '#case-carousel/s05', 'and graphics people', 'want to look at.'],
+      worksHint: 'Keep scrolling — the work slides sideways'
     },
 
     works: {
@@ -288,7 +293,8 @@ module.exports = {
       formNote: 'The button opens your email app with the message ready. Nothing is sent without you.',
       formError: 'Please add a few words about the project',
       formSubject: 'Project',
-      formHello: 'Hello!'
+      formHello: 'Hello!',
+      badge: 'Write to me • Let’s talk • '
     },
 
     footer: { top: 'Back to top', rights: 'All rights reserved', made: 'Design and code by the site’s author' },
@@ -330,7 +336,9 @@ module.exports = {
       aboutText: 'Mənim üçün dizayn “nə üçün?” sualı ilə başlayır və real insanların real ekranlarında işləyən nəticə ilə bitir.',
       aboutLink: 'Haqqımda ətraflı',
       servicesTitle: 'Necə <em>kömək</em> edə bilərəm',
-      servicesLink: 'Bütün xidmətlər'
+      servicesLink: 'Bütün xidmətlər',
+      statement: ['Mən', '#nocturne/m-home', 'saytlar və interfeyslər,', '#vinyl-covers/single', 'vizual sistemlər', '#case-carousel/s05', 'və baxmaq istədiyiniz', 'qrafika yaradıram.'],
+      worksHint: 'Sürüşdürün — işlər yana hərəkət edir'
     },
 
     works: {
@@ -434,7 +442,8 @@ module.exports = {
       formNote: 'Düymə poçt proqramınızı hazır məktubla açacaq. Sizsiz heç nə göndərilmir.',
       formError: 'Layihə haqqında heç olmasa bir neçə söz yazın',
       formSubject: 'Layihə',
-      formHello: 'Salam!'
+      formHello: 'Salam!',
+      badge: 'Mənə yazın • Danışaq • '
     },
 
     footer: { top: 'Yuxarı', rights: 'Bütün hüquqlar qorunur', made: 'Dizayn və kod — saytın müəllifi' },

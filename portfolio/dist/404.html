@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/main.css">
 
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="page-404 " style="" data-ui='{&quot;copied&quot;:&quot;Скопировано&quot;,&quot;copyFail&quot;:&quot;Не удалось скопировать — выделите текст вручную&quot;,&quot;view&quot;:&quot;Открыть&quot;,&quot;formError&quot;:&quot;Напишите хотя бы пару слов о проекте&quot;}'>
 <a class="skip" href="#main">Перейти к содержимому</a>
@@ -36,7 +36,7 @@
       <span class="logo__mark" aria-hidden="true">M<i></i></span><span class="logo__name">Mariwechka</span>
     </a>
     <nav class="nav" aria-label="Меню">
-      <a href="ru/works.html" ><sup>01</sup>Работы</a><a href="ru/about.html" ><sup>02</sup>Обо мне</a><a href="ru/services.html" ><sup>03</sup>Услуги</a><a href="ru/contact.html" ><sup>04</sup>Контакт</a>
+      <a href="ru/works.html" ><sup>01</sup><span data-scramble>Работы</span></a><a href="ru/about.html" ><sup>02</sup><span data-scramble>Обо мне</span></a><a href="ru/services.html" ><sup>03</sup><span data-scramble>Услуги</span></a><a href="ru/contact.html" ><sup>04</sup><span data-scramble>Контакт</span></a>
     </nav>
     <nav class="lang " aria-label="Язык">
     <a href="ru/404.html" hreflang="ru" lang="ru" data-lang="ru" aria-current="true" title="Русский">RU</a><a href="en/404.html" hreflang="en" lang="en" data-lang="en"  title="English">EN</a><a href="az/404.html" hreflang="az" lang="az" data-lang="az"  title="Azərbaycanca">AZ</a>
@@ -74,8 +74,18 @@
       <button class="mono ftr__top" type="button" data-top>Наверх ↑</button>
     </div>
   </footer>
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true"><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">i</span><span style="--i:4">w</span><span style="--i:5">e</span><span style="--i:6">c</span><span style="--i:7">h</span><span style="--i:8">k</span><span style="--i:9">a</span><i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>Фриланс-дизайнер</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </body>
 </html>

@@ -10,8 +10,24 @@ const nameLetters = () => [...config.name].map((c, i) => `<span class="hero__l" 
 /* ===================== HOME ===================== */
 const home = (lang, page) => {
   const T = i18n[lang];
+  const fillWords = txt => txt.split(/\s+/).filter(Boolean).map(w => `<span class="fw">${esc(w)}</span>`).join(' ');
+  const statement = T.home.statement.map(seg => seg.startsWith('#')
+    ? `<span class="pillimg" aria-hidden="true">${img(page, seg.slice(1), '', { sizes: '180px' })}</span>`
+    : fillWords(seg)).join(' ');
+  const hcard = (p, i) => `<article class="hcard hcard--${p.card.size}" style="--tone:${p.card.tone}">
+      <a class="hcard__link" href="${rel(page, routes.project(lang, p.slug))}" data-cursor="${esc(T.works.view)}">
+        <span class="hcard__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+        <div class="hcard__media"><div class="hcard__img">${img(page, p.cover, `${p.title}: ${t(p.summary, lang)}`, { sizes: '(max-width: 860px) 86vw, 60vw' })}</div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">${esc(p.title)}</h3>
+          <p class="hcard__cats mono">${p.categories.map(c => esc(T.categories[c])).join(' / ')} — ${p.year}</p>
+          <p class="hcard__sum">${esc(t(p.summary, lang))}</p>
+        </div>
+      </a>
+    </article>`;
   return `
   <section class="hero" aria-labelledby="hero-name">
+    <canvas class="hero__canvas" aria-hidden="true" data-field></canvas>
     <div class="wrap hero__in">
       <div class="hero__top mono" data-rv>
         <span>(${T.hero.index}) — ${config.year}</span>
@@ -26,23 +42,37 @@ const home = (lang, page) => {
           <span class="ticker" aria-hidden="true">${T.disciplines.map((d, i) => `<b style="--k:${i}">${esc(d)}</b>`).join('')}</span>
         </div>
         <div class="hero__cta" data-rv>
-          <a class="btn btn--ink" href="${rel(page, routes.works(lang))}">${T.hero.ctaWorks} ${icon.arrow}</a>
-          <a class="btn btn--line" href="${rel(page, routes.contact(lang))}">${T.hero.ctaContact}</a>
+          <a class="btn btn--ink" href="${rel(page, routes.works(lang))}" data-magnet>${T.hero.ctaWorks} ${icon.arrow}</a>
+          <a class="btn btn--line" href="${rel(page, routes.contact(lang))}" data-magnet>${T.hero.ctaContact}</a>
         </div>
       </div>
-      <div class="hero__foot mono"><span class="hero__hint">${T.hero.hint} ↑</span><a href="#works" class="hero__scroll">${T.hero.scroll} ↓</a></div>
+      <div class="hero__foot mono"><span class="hero__hint">${T.hero.hint} ↑</span><a href="#statement" class="hero__scroll"><span class="hero__scroll-line"></span>${T.hero.scroll}</a></div>
     </div>
   </section>
 
-  <section class="sect" id="works" aria-labelledby="works-title">
-    <div class="wrap">
-      <header class="shead">
-        <span class="shead__no mono">(01)</span>
-        <h2 class="shead__title" id="works-title" data-split>${T.home.worksTitle}</h2>
-        <p class="shead__sub" data-rv>${T.home.worksSub}</p>
-        <a class="link" href="${rel(page, routes.works(lang))}" data-rv>${T.home.allWorks} ${icon.arrow}</a>
-      </header>
-      <div class="works">${projects.map((p, i) => workCard(p, lang, page, i)).join('')}${yoursCard(lang, page)}</div>
+  <section class="statement" id="statement" aria-label="${esc(T.home.aboutKicker)}">
+    <div class="wrap"><p class="statement__text" data-fill>${statement}</p></div>
+  </section>
+
+  <section class="hw" id="works" aria-labelledby="works-title">
+    <div class="hw__pin">
+      <div class="wrap">
+        <header class="shead shead--hw" data-num="01">
+          <span class="shead__no mono">(01)</span>
+          <h2 class="shead__title" id="works-title" data-split>${T.home.worksTitle}</h2>
+          <p class="shead__sub" data-rv>${T.home.worksSub}</p>
+          <a class="link" href="${rel(page, routes.works(lang))}" data-rv>${T.home.allWorks} ${icon.arrow}</a>
+        </header>
+      </div>
+      <div class="hw__track" data-hscroll>
+        ${projects.map((p, i) => hcard(p, i)).join('')}
+        <article class="hcard hcard--yours">
+          <a class="hcard__link" href="${rel(page, routes.contact(lang))}" data-cursor="${esc(T.works.yoursCta)}">
+            <div class="yours"><span class="yours__plus" aria-hidden="true"></span><h3 class="yours__title">${T.works.yoursTitle}</h3><p class="yours__text">${T.works.yoursText}</p><span class="yours__cta mono">${T.works.yoursCta} ${icon.arrow}</span></div>
+          </a>
+        </article>
+      </div>
+      <div class="wrap hw__foot"><span class="mono hw__hint">${T.home.worksHint} →</span><div class="hw__bar"><i></i></div></div>
     </div>
   </section>
 
@@ -51,14 +81,14 @@ const home = (lang, page) => {
   <section class="sect approach-teaser" aria-labelledby="ap-title">
     <div class="wrap at">
       <span class="shead__no mono">(02) ${T.home.aboutKicker}</span>
-      <h2 class="at__text" id="ap-title" data-split>${T.home.aboutText}</h2>
+      <h2 class="at__text" id="ap-title" data-fill>${fillWords(T.home.aboutText)}</h2>
       <a class="link" href="${rel(page, routes.about(lang))}" data-rv>${T.home.aboutLink} ${icon.arrow}</a>
     </div>
   </section>
 
   <section class="sect" aria-labelledby="sv-title">
     <div class="wrap">
-      <header class="shead">
+      <header class="shead" data-num="03">
         <span class="shead__no mono">(03)</span>
         <h2 class="shead__title" id="sv-title" data-split>${T.home.servicesTitle}</h2>
         <a class="link" href="${rel(page, routes.services(lang))}" data-rv>${T.home.servicesLink} ${icon.arrow}</a>
@@ -66,7 +96,7 @@ const home = (lang, page) => {
       <ol class="srows">
         ${serviceIds.map((id, i) => { const s = T.services.list[id]; return `<li data-rv style="--i:${i}"><a class="srow" href="${rel(page, routes.services(lang))}#${id}">
           <span class="srow__no mono">${String(i + 1).padStart(2, '0')}</span>
-          <span class="srow__name">${s.name}</span>
+          <span class="srow__name" data-scramble>${s.name}</span>
           <span class="srow__desc">${s.desc}</span>
           ${glyph(id)}
         </a></li>`; }).join('')}
@@ -173,7 +203,7 @@ const about = (lang, page) => {
   </section>
   <section class="sect">
     <div class="wrap">
-      <header class="shead"><span class="shead__no mono">(01)</span><h2 class="shead__title" data-split>${A.approachTitle}</h2></header>
+      <header class="shead" data-num="01"><span class="shead__no mono">(01)</span><h2 class="shead__title" data-split>${A.approachTitle}</h2></header>
       <ol class="principles">${A.approach.map(([h, d], i) => `<li data-rv style="--i:${i}"><span class="principles__no">${i + 1}</span><h3>${h}</h3><p>${d}</p></li>`).join('')}</ol>
     </div>
   </section>
@@ -211,7 +241,7 @@ const services = (lang, page) => {
   </section>
   <section class="sect">
     <div class="wrap">
-      <header class="shead"><span class="shead__no mono">→</span><h2 class="shead__title" data-split>${S.processTitle}</h2></header>
+      <header class="shead" data-num="→"><span class="shead__no mono">→</span><h2 class="shead__title" data-split>${S.processTitle}</h2></header>
       <ol class="steps">${S.process.map(([h, d], i) => `<li data-rv style="--i:${i}"><span class="steps__no mono">${String(i + 1).padStart(2, '0')}</span><h3>${h}</h3><p>${d}</p></li>`).join('')}</ol>
     </div>
   </section>

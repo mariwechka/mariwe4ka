@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/main.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mariwechka","jobTitle":"Frilans dizayner","email":"mailto:marifreelance2758@gmail.com","url":"https://example.com/az/","sameAs":["https://t.me/mrwechka"]}</script>
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','az');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','az');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="page-home " style="" data-ui='{&quot;copied&quot;:&quot;Kopyalandı&quot;,&quot;copyFail&quot;:&quot;Kopyalamaq alınmadı — mətni əl ilə seçin&quot;,&quot;view&quot;:&quot;Aç&quot;,&quot;formError&quot;:&quot;Layihə haqqında heç olmasa bir neçə söz yazın&quot;}'>
 <a class="skip" href="#main">Məzmuna keç</a>
@@ -36,7 +36,7 @@
       <span class="logo__mark" aria-hidden="true">M<i></i></span><span class="logo__name">Mariwechka</span>
     </a>
     <nav class="nav" aria-label="Menyu">
-      <a href="works.html" ><sup>01</sup>İşlər</a><a href="about.html" ><sup>02</sup>Haqqımda</a><a href="services.html" ><sup>03</sup>Xidmətlər</a><a href="contact.html" ><sup>04</sup>Əlaqə</a>
+      <a href="works.html" ><sup>01</sup><span data-scramble>İşlər</span></a><a href="about.html" ><sup>02</sup><span data-scramble>Haqqımda</span></a><a href="services.html" ><sup>03</sup><span data-scramble>Xidmətlər</span></a><a href="contact.html" ><sup>04</sup><span data-scramble>Əlaqə</span></a>
     </nav>
     <nav class="lang " aria-label="Dil">
     <a href="../ru/index.html" hreflang="ru" lang="ru" data-lang="ru"  title="Русский">RU</a><a href="../en/index.html" hreflang="en" lang="en" data-lang="en"  title="English">EN</a><a href="index.html" hreflang="az" lang="az" data-lang="az" aria-current="true" title="Azərbaycanca">AZ</a>
@@ -60,6 +60,7 @@
 <main id="main" tabindex="-1">
 
   <section class="hero" aria-labelledby="hero-name">
+    <canvas class="hero__canvas" aria-hidden="true" data-field></canvas>
     <div class="wrap hero__in">
       <div class="hero__top mono" data-rv>
         <span>(Portfolio) — 2026</span>
@@ -74,65 +75,67 @@
           <span class="ticker" aria-hidden="true"><b style="--k:0">Qrafik dizayn</b><b style="--k:1">Veb dizayn</b><b style="--k:2">UI/UX</b><b style="--k:3">Brendinq</b><b style="--k:4">Rəqəmsal incəsənət</b></span>
         </div>
         <div class="hero__cta" data-rv>
-          <a class="btn btn--ink" href="works.html">İşlərə bax <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn--line" href="contact.html">Mənə yaz</a>
+          <a class="btn btn--ink" href="works.html" data-magnet>İşlərə bax <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--line" href="contact.html" data-magnet>Mənə yaz</a>
         </div>
       </div>
-      <div class="hero__foot mono"><span class="hero__hint">Kursoru adın üzərinə gətir ↑</span><a href="#works" class="hero__scroll">Aşağı sürüşdür ↓</a></div>
+      <div class="hero__foot mono"><span class="hero__hint">Kursoru adın üzərinə gətir ↑</span><a href="#statement" class="hero__scroll"><span class="hero__scroll-line"></span>Aşağı sürüşdür</a></div>
     </div>
   </section>
 
-  <section class="sect" id="works" aria-labelledby="works-title">
-    <div class="wrap">
-      <header class="shead">
-        <span class="shead__no mono">(01)</span>
-        <h2 class="shead__title" id="works-title" data-split>Seçilmiş <em>işlər</em></h2>
-        <p class="shead__sub" data-rv>Necə düşündüyümü göstərən bir neçə layihə: ideyadan hazır məhsula qədər.</p>
-        <a class="link" href="works.html" data-rv>Bütün işlər <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-      </header>
-      <div class="works"><article class="work work--xl" data-cats="web uiux" data-rv style="--tone:#8e1b27;--i:0">
-    <a class="work__link" href="works/nocturne.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 760px) 100vw, 66vw" width="1600" height="1000" alt="NOCTURNE: Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">01</span>
-        <h3 class="work__title">NOCTURNE</h3>
-        <p class="work__sum">Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası.</p>
-        <p class="work__cats mono"><span>Veb dizayn</span><span>UI/UX</span><span>2026</span></p>
+  <section class="statement" id="statement" aria-label="Yanaşma">
+    <div class="wrap"><p class="statement__text" data-fill><span class="fw">Mən</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/nocturne/m-home-720.webp" srcset="../assets/img/works/nocturne/m-home-720.webp 720w, ../assets/img/works/nocturne/m-home-360.webp 360w" sizes="180px" width="720" height="1558" alt="" loading="lazy" decoding="async"></span> <span class="fw">saytlar</span> <span class="fw">və</span> <span class="fw">interfeyslər,</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/vinyl-covers/single-1200.webp" srcset="../assets/img/works/vinyl-covers/single-1200.webp 1200w, ../assets/img/works/vinyl-covers/single-800.webp 800w" sizes="180px" width="1200" height="1200" alt="" loading="lazy" decoding="async"></span> <span class="fw">vizual</span> <span class="fw">sistemlər</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/case-carousel/s05-1080.webp" srcset="../assets/img/works/case-carousel/s05-1080.webp 1080w, ../assets/img/works/case-carousel/s05-800.webp 800w" sizes="180px" width="1080" height="1350" alt="" loading="lazy" decoding="async"></span> <span class="fw">və</span> <span class="fw">baxmaq</span> <span class="fw">istədiyiniz</span> <span class="fw">qrafika</span> <span class="fw">yaradıram.</span></p></div>
+  </section>
+
+  <section class="hw" id="works" aria-labelledby="works-title">
+    <div class="hw__pin">
+      <div class="wrap">
+        <header class="shead shead--hw" data-num="01">
+          <span class="shead__no mono">(01)</span>
+          <h2 class="shead__title" id="works-title" data-split>Seçilmiş <em>işlər</em></h2>
+          <p class="shead__sub" data-rv>Necə düşündüyümü göstərən bir neçə layihə: ideyadan hazır məhsula qədər.</p>
+          <a class="link" href="works.html" data-rv>Bütün işlər <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </header>
       </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--tall" data-cats="digital-art graphic" data-rv style="--tone:#1c2230;--i:1">
-    <a class="work__link" href="works/vinyl-covers.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/vinyl-covers/fan-1600.webp" srcset="../assets/img/works/vinyl-covers/fan-1600.webp 1600w, ../assets/img/works/vinyl-covers/fan-800.webp 800w" sizes="(max-width: 760px) 100vw, 34vw" width="1600" height="978" alt="Vinyl Covers: Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">02</span>
-        <h3 class="work__title">Vinyl Covers</h3>
-        <p class="work__sum">Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı.</p>
-        <p class="work__cats mono"><span>Rəqəmsal incəsənət</span><span>Qrafik dizayn</span><span>2026</span></p>
+      <div class="hw__track" data-hscroll>
+        <article class="hcard hcard--xl" style="--tone:#8e1b27">
+      <a class="hcard__link" href="works/nocturne.html" data-cursor="Aç">
+        <span class="hcard__num" aria-hidden="true">01</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1600" height="1000" alt="NOCTURNE: Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">NOCTURNE</h3>
+          <p class="hcard__cats mono">Veb dizayn / UI/UX — 2026</p>
+          <p class="hcard__sum">Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası.</p>
+        </div>
+      </a>
+    </article><article class="hcard hcard--tall" style="--tone:#1c2230">
+      <a class="hcard__link" href="works/vinyl-covers.html" data-cursor="Aç">
+        <span class="hcard__num" aria-hidden="true">02</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/vinyl-covers/fan-1600.webp" srcset="../assets/img/works/vinyl-covers/fan-1600.webp 1600w, ../assets/img/works/vinyl-covers/fan-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1600" height="978" alt="Vinyl Covers: Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">Vinyl Covers</h3>
+          <p class="hcard__cats mono">Rəqəmsal incəsənət / Qrafik dizayn — 2026</p>
+          <p class="hcard__sum">Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı.</p>
+        </div>
+      </a>
+    </article><article class="hcard hcard--m" style="--tone:#5b1018">
+      <a class="hcard__link" href="works/case-carousel.html" data-cursor="Aç">
+        <span class="hcard__num" aria-hidden="true">03</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/case-carousel/s01-1080.webp" srcset="../assets/img/works/case-carousel/s01-1080.webp 1080w, ../assets/img/works/case-carousel/s01-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1080" height="1350" alt="NOCTURNE Carousel: NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">NOCTURNE Carousel</h3>
+          <p class="hcard__cats mono">Qrafik dizayn — 2026</p>
+          <p class="hcard__sum">NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel.</p>
+        </div>
+      </a>
+    </article>
+        <article class="hcard hcard--yours">
+          <a class="hcard__link" href="contact.html" data-cursor="Layihəni müzakirə et">
+            <div class="yours"><span class="yours__plus" aria-hidden="true"></span><h3 class="yours__title">Burada sizin layihəniz ola bilər</h3><p class="yours__text">Tapşırıq haqqında danışın, həll yolunu təklif edim.</p><span class="yours__cta mono">Layihəni müzakirə et <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></div>
+          </a>
+        </article>
       </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--m" data-cats="graphic" data-rv style="--tone:#5b1018;--i:2">
-    <a class="work__link" href="works/case-carousel.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/case-carousel/s01-1080.webp" srcset="../assets/img/works/case-carousel/s01-1080.webp 1080w, ../assets/img/works/case-carousel/s01-800.webp 800w" sizes="(max-width: 760px) 100vw, 42vw" width="1080" height="1350" alt="NOCTURNE Carousel: NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">03</span>
-        <h3 class="work__title">NOCTURNE Carousel</h3>
-        <p class="work__sum">NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel.</p>
-        <p class="work__cats mono"><span>Qrafik dizayn</span><span>2026</span></p>
-      </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--yours" data-cats="*" data-rv>
-    <a class="work__link" href="contact.html" data-cursor="Layihəni müzakirə et">
-      <div class="yours">
-        <span class="yours__plus" aria-hidden="true"></span>
-        <h3 class="yours__title">Burada sizin layihəniz ola bilər</h3>
-        <p class="yours__text">Tapşırıq haqqında danışın, həll yolunu təklif edim.</p>
-        <span class="yours__cta mono">Layihəni müzakirə et <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </a>
-  </article></div>
+      <div class="wrap hw__foot"><span class="mono hw__hint">Sürüşdürün — işlər yana hərəkət edir →</span><div class="hw__bar"><i></i></div></div>
     </div>
   </section>
 
@@ -141,14 +144,14 @@
   <section class="sect approach-teaser" aria-labelledby="ap-title">
     <div class="wrap at">
       <span class="shead__no mono">(02) Yanaşma</span>
-      <h2 class="at__text" id="ap-title" data-split>Mənim üçün dizayn “nə üçün?” sualı ilə başlayır və real insanların real ekranlarında işləyən nəticə ilə bitir.</h2>
+      <h2 class="at__text" id="ap-title" data-fill><span class="fw">Mənim</span> <span class="fw">üçün</span> <span class="fw">dizayn</span> <span class="fw">“nə</span> <span class="fw">üçün?”</span> <span class="fw">sualı</span> <span class="fw">ilə</span> <span class="fw">başlayır</span> <span class="fw">və</span> <span class="fw">real</span> <span class="fw">insanların</span> <span class="fw">real</span> <span class="fw">ekranlarında</span> <span class="fw">işləyən</span> <span class="fw">nəticə</span> <span class="fw">ilə</span> <span class="fw">bitir.</span></h2>
       <a class="link" href="about.html" data-rv>Haqqımda ətraflı <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 
   <section class="sect" aria-labelledby="sv-title">
     <div class="wrap">
-      <header class="shead">
+      <header class="shead" data-num="03">
         <span class="shead__no mono">(03)</span>
         <h2 class="shead__title" id="sv-title" data-split>Necə <em>kömək</em> edə bilərəm</h2>
         <a class="link" href="services.html" data-rv>Bütün xidmətlər <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
@@ -156,32 +159,32 @@
       <ol class="srows">
         <li data-rv style="--i:0"><a class="srow" href="services.html#web">
           <span class="srow__no mono">01</span>
-          <span class="srow__name">Veb dizayn</span>
+          <span class="srow__name" data-scramble>Veb dizayn</span>
           <span class="srow__desc">Xarakteri olan, eyni zamanda oxumaq, gəzmək və alış-veriş etmək rahat olan saytlar.</span>
           <span class="glyph glyph--web" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:1"><a class="srow" href="services.html#uiux">
           <span class="srow__no mono">02</span>
-          <span class="srow__name">UI/UX dizayn</span>
+          <span class="srow__name" data-scramble>UI/UX dizayn</span>
           <span class="srow__desc">İstifadəçinin yolu düymələrin rəngindən əvvəl düşünülmüş interfeyslər.</span>
           <span class="glyph glyph--uiux" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:2"><a class="srow" href="services.html#branding">
           <span class="srow__no mono">03</span>
-          <span class="srow__name">Brendinq və korporativ üslub</span>
+          <span class="srow__name" data-scramble>Brendinq və korporativ üslub</span>
           <span class="srow__desc">Brendin vizual dili: loqodan onun istifadə qaydalarına qədər.</span>
           <span class="glyph glyph--branding" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:3"><a class="srow" href="services.html#graphic">
           <span class="srow__no mono">04</span>
-          <span class="srow__name">Qrafik dizayn</span>
+          <span class="srow__name" data-scramble>Qrafik dizayn</span>
           <span class="srow__desc">Vahid sistemin hissəsi kimi görünən çap və rəqəmsal materiallar.</span>
           <span class="glyph glyph--graphic" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:4"><a class="srow" href="services.html#digital">
           <span class="srow__no mono">05</span>
-          <span class="srow__name">Rəqəmsal dizayn</span>
+          <span class="srow__name" data-scramble>Rəqəmsal dizayn</span>
           <span class="srow__desc">Ekranlar üçün qrafika: generativ vizuallar, bannerlər, üz qabıqları, təqdimat vizualları.</span>
           <span class="glyph glyph--digital" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:5"><a class="srow" href="services.html#3d">
           <span class="srow__no mono">06</span>
-          <span class="srow__name">3D vizuallaşdırma</span>
+          <span class="srow__name" data-scramble>3D vizuallaşdırma</span>
           <span class="srow__desc">İnteryer və əşyaların vizuallaşdırılması: ideyanı tikilməzdən əvvəl görmək üçün.</span>
           <span class="glyph glyph--3d" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li>
@@ -190,6 +193,10 @@
   </section>
   <section class="finale" id="contact" aria-labelledby="finale-title">
     <div class="finale__orb" aria-hidden="true"></div>
+    <a class="badge" href="contact.html" aria-label="Əlaqə">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#badge-c" textLength="488">Mənə yazın • Danışaq • Mənə yazın • Danışaq • </textPath></text></svg>
+    <span class="badge__arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+  </a>
     <div class="wrap">
       <p class="kicker mono" data-rv><span class="status is-on"></span>Yeni layihələr üçün açığam</p>
       <h2 class="finale__title" id="finale-title" data-split>Gəlin birlikdə<br><em>diqqətçəkən</em> bir şey edək</h2>
@@ -222,8 +229,18 @@
       <button class="mono ftr__top" type="button" data-top>Yuxarı ↑</button>
     </div>
   </footer>
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true"><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">i</span><span style="--i:4">w</span><span style="--i:5">e</span><span style="--i:6">c</span><span style="--i:7">h</span><span style="--i:8">k</span><span style="--i:9">a</span><i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>Frilans dizayner</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/vendor/gsap.min.js" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/motion.js" defer></script>
 </body>
 </html>

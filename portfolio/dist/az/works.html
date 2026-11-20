@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/main.css">
 
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','az');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','az');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="page-works " style="" data-ui='{&quot;copied&quot;:&quot;Kopyalandı&quot;,&quot;copyFail&quot;:&quot;Kopyalamaq alınmadı — mətni əl ilə seçin&quot;,&quot;view&quot;:&quot;Aç&quot;,&quot;formError&quot;:&quot;Layihə haqqında heç olmasa bir neçə söz yazın&quot;}'>
 <a class="skip" href="#main">Məzmuna keç</a>
@@ -36,7 +36,7 @@
       <span class="logo__mark" aria-hidden="true">M<i></i></span><span class="logo__name">Mariwechka</span>
     </a>
     <nav class="nav" aria-label="Menyu">
-      <a href="works.html" aria-current="page"><sup>01</sup>İşlər</a><a href="about.html" ><sup>02</sup>Haqqımda</a><a href="services.html" ><sup>03</sup>Xidmətlər</a><a href="contact.html" ><sup>04</sup>Əlaqə</a>
+      <a href="works.html" aria-current="page"><sup>01</sup><span data-scramble>İşlər</span></a><a href="about.html" ><sup>02</sup><span data-scramble>Haqqımda</span></a><a href="services.html" ><sup>03</sup><span data-scramble>Xidmətlər</span></a><a href="contact.html" ><sup>04</sup><span data-scramble>Əlaqə</span></a>
     </nav>
     <nav class="lang " aria-label="Dil">
     <a href="../ru/works.html" hreflang="ru" lang="ru" data-lang="ru"  title="Русский">RU</a><a href="../en/works.html" hreflang="en" lang="en" data-lang="en"  title="English">EN</a><a href="works.html" hreflang="az" lang="az" data-lang="az" aria-current="true" title="Azərbaycanca">AZ</a>
@@ -120,6 +120,10 @@
   </section>
   <section class="finale" id="contact" aria-labelledby="finale-title">
     <div class="finale__orb" aria-hidden="true"></div>
+    <a class="badge" href="contact.html" aria-label="Əlaqə">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#badge-c" textLength="488">Mənə yazın • Danışaq • Mənə yazın • Danışaq • </textPath></text></svg>
+    <span class="badge__arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+  </a>
     <div class="wrap">
       <p class="kicker mono" data-rv><span class="status is-on"></span>Yeni layihələr üçün açığam</p>
       <h2 class="finale__title" id="finale-title" data-split>Gəlin birlikdə<br><em>diqqətçəkən</em> bir şey edək</h2>
@@ -152,8 +156,18 @@
       <button class="mono ftr__top" type="button" data-top>Yuxarı ↑</button>
     </div>
   </footer>
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true"><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">i</span><span style="--i:4">w</span><span style="--i:5">e</span><span style="--i:6">c</span><span style="--i:7">h</span><span style="--i:8">k</span><span style="--i:9">a</span><i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>Frilans dizayner</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/vendor/gsap.min.js" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/motion.js" defer></script>
 </body>
 </html>

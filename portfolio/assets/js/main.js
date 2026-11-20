@@ -14,11 +14,15 @@
     set: (k, v) => { try { sessionStorage.setItem(k, v); } catch (e) { /* private mode */ } },
     del: k => { try { sessionStorage.removeItem(k); } catch (e) { /* noop */ } }
   };
+  const veilLabel = $('.veil__label');
   if (root.classList.contains('is-arriving')) {
+    if (veilLabel) veilLabel.textContent = root.dataset.veil && root.dataset.veil !== '1' ? root.dataset.veil : '';
     store.del('pf:veil');
-    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-arrived')));
-    setTimeout(() => root.classList.remove('is-arriving', 'is-arrived'), 900);
+    setTimeout(() => root.classList.add('is-arrived'), 120);
+    setTimeout(() => root.classList.remove('is-arriving', 'is-arrived'), 1100);
   }
+  // without the motion engine there is no preloader
+  if (!window.gsap) { root.classList.remove('is-preload'); store.set('pf:seen', '1'); }
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -31,9 +35,13 @@
     if (a.dataset.lang) { try { localStorage.setItem('pf:lang', a.dataset.lang); } catch (err) { /* noop */ } }
     if (reduced) return;
     e.preventDefault();
-    store.set('pf:veil', '1');
+    // the label of the destination link becomes the word on the curtain
+    const label = (a.dataset.veil || a.querySelector('[data-scramble], .hcard__title, .work__title, .yours__title')?.textContent || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 28);
+    const short = label.length > 1 && label.length <= 28 && !/^[A-Z]{2}$/.test(label) ? label : '';
+    store.set('pf:veil', short || '1');
+    if (veilLabel) veilLabel.textContent = short;
     root.classList.add('is-leaving');
-    setTimeout(() => { location.href = a.href; }, 480);
+    setTimeout(() => { location.href = a.href; }, 720);
   });
   addEventListener('pageshow', e => { if (e.persisted) root.classList.remove('is-leaving', 'is-arriving', 'is-arrived'); });
 
@@ -111,7 +119,8 @@
      A plain position check (rAF-throttled) instead of IntersectionObserver:
      simpler, and immune to the clipping quirks seen with overflow-x: clip. */
   let pending = $$('[data-rv], [data-split]');
-  if (reduced) pending.forEach(el => el.classList.add('in'));
+  if (window.gsap && !reduced) { /* motion.js takes over reveals */ }
+  else if (reduced) pending.forEach(el => el.classList.add('in'));
   else {
     let queued = false;
     const check = () => {
@@ -139,7 +148,8 @@
       document.addEventListener('pointerleave', () => { active = false; });
     }
     // wait for the intro animation before driving weights
-    setTimeout(() => letters.forEach(l => { l.style.animation = 'none'; l.style.transform = 'none'; }), 1400);
+    // once the last letter has risen, hand the letters over to the weight loop
+    letters[letters.length - 1].addEventListener('animationend', () => letters.forEach(l => { l.style.animation = 'none'; l.style.transform = 'none'; }), { once: true });
     const loop = t => {
       const rect = word.getBoundingClientRect();
       if (rect.bottom > 0 && rect.top < innerHeight) {
@@ -171,7 +181,7 @@
   if (fine && !reduced) {
     const c = document.createElement('div');
     c.className = 'cursor is-off'; c.setAttribute('aria-hidden', 'true');
-    c.innerHTML = '<span class="cursor__dot"></span><span class="cursor__label"></span>';
+    c.innerHTML = '<span class="cursor__ring"></span><span class="cursor__dot"></span><span class="cursor__label"></span>';
     document.body.appendChild(c);
     const label = $('.cursor__label', c);
     let x = 0, y = 0, cx = 0, cy = 0;

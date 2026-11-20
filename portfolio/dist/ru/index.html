@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/main.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mariwechka","jobTitle":"Фриланс-дизайнер","email":"mailto:marifreelance2758@gmail.com","url":"https://example.com/ru/","sameAs":["https://t.me/mrwechka"]}</script>
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="page-home " style="" data-ui='{&quot;copied&quot;:&quot;Скопировано&quot;,&quot;copyFail&quot;:&quot;Не удалось скопировать — выделите текст вручную&quot;,&quot;view&quot;:&quot;Открыть&quot;,&quot;formError&quot;:&quot;Напишите хотя бы пару слов о проекте&quot;}'>
 <a class="skip" href="#main">Перейти к содержимому</a>
@@ -36,7 +36,7 @@
       <span class="logo__mark" aria-hidden="true">M<i></i></span><span class="logo__name">Mariwechka</span>
     </a>
     <nav class="nav" aria-label="Меню">
-      <a href="works.html" ><sup>01</sup>Работы</a><a href="about.html" ><sup>02</sup>Обо мне</a><a href="services.html" ><sup>03</sup>Услуги</a><a href="contact.html" ><sup>04</sup>Контакт</a>
+      <a href="works.html" ><sup>01</sup><span data-scramble>Работы</span></a><a href="about.html" ><sup>02</sup><span data-scramble>Обо мне</span></a><a href="services.html" ><sup>03</sup><span data-scramble>Услуги</span></a><a href="contact.html" ><sup>04</sup><span data-scramble>Контакт</span></a>
     </nav>
     <nav class="lang " aria-label="Язык">
     <a href="index.html" hreflang="ru" lang="ru" data-lang="ru" aria-current="true" title="Русский">RU</a><a href="../en/index.html" hreflang="en" lang="en" data-lang="en"  title="English">EN</a><a href="../az/index.html" hreflang="az" lang="az" data-lang="az"  title="Azərbaycanca">AZ</a>
@@ -60,6 +60,7 @@
 <main id="main" tabindex="-1">
 
   <section class="hero" aria-labelledby="hero-name">
+    <canvas class="hero__canvas" aria-hidden="true" data-field></canvas>
     <div class="wrap hero__in">
       <div class="hero__top mono" data-rv>
         <span>(Портфолио) — 2026</span>
@@ -74,65 +75,67 @@
           <span class="ticker" aria-hidden="true"><b style="--k:0">Графический дизайн</b><b style="--k:1">Веб-дизайн</b><b style="--k:2">UI/UX</b><b style="--k:3">Брендинг</b><b style="--k:4">Digital art</b></span>
         </div>
         <div class="hero__cta" data-rv>
-          <a class="btn btn--ink" href="works.html">Смотреть работы <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn--line" href="contact.html">Написать мне</a>
+          <a class="btn btn--ink" href="works.html" data-magnet>Смотреть работы <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--line" href="contact.html" data-magnet>Написать мне</a>
         </div>
       </div>
-      <div class="hero__foot mono"><span class="hero__hint">Наведите на имя ↑</span><a href="#works" class="hero__scroll">Листайте ↓</a></div>
+      <div class="hero__foot mono"><span class="hero__hint">Наведите на имя ↑</span><a href="#statement" class="hero__scroll"><span class="hero__scroll-line"></span>Листайте</a></div>
     </div>
   </section>
 
-  <section class="sect" id="works" aria-labelledby="works-title">
-    <div class="wrap">
-      <header class="shead">
-        <span class="shead__no mono">(01)</span>
-        <h2 class="shead__title" id="works-title" data-split>Избранные <em>работы</em></h2>
-        <p class="shead__sub" data-rv>Несколько проектов, в которых видно, как я думаю: от идеи до готового продукта.</p>
-        <a class="link" href="works.html" data-rv>Все работы <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-      </header>
-      <div class="works"><article class="work work--xl" data-cats="web uiux" data-rv style="--tone:#8e1b27;--i:0">
-    <a class="work__link" href="works/nocturne.html" data-cursor="Открыть">
-      <div class="work__media"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 760px) 100vw, 66vw" width="1600" height="1000" alt="NOCTURNE: Интернет-магазин виниловых пластинок, который читается как независимый музыкальный журнал." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">01</span>
-        <h3 class="work__title">NOCTURNE</h3>
-        <p class="work__sum">Интернет-магазин виниловых пластинок, который читается как независимый музыкальный журнал.</p>
-        <p class="work__cats mono"><span>Веб-дизайн</span><span>UI/UX</span><span>2026</span></p>
+  <section class="statement" id="statement" aria-label="Подход">
+    <div class="wrap"><p class="statement__text" data-fill><span class="fw">Создаю</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/nocturne/m-home-720.webp" srcset="../assets/img/works/nocturne/m-home-720.webp 720w, ../assets/img/works/nocturne/m-home-360.webp 360w" sizes="180px" width="720" height="1558" alt="" loading="lazy" decoding="async"></span> <span class="fw">сайты</span> <span class="fw">и</span> <span class="fw">интерфейсы,</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/vinyl-covers/single-1200.webp" srcset="../assets/img/works/vinyl-covers/single-1200.webp 1200w, ../assets/img/works/vinyl-covers/single-800.webp 800w" sizes="180px" width="1200" height="1200" alt="" loading="lazy" decoding="async"></span> <span class="fw">визуальные</span> <span class="fw">системы</span> <span class="pillimg" aria-hidden="true"><img class="" src="../assets/img/works/case-carousel/s05-1080.webp" srcset="../assets/img/works/case-carousel/s05-1080.webp 1080w, ../assets/img/works/case-carousel/s05-800.webp 800w" sizes="180px" width="1080" height="1350" alt="" loading="lazy" decoding="async"></span> <span class="fw">и</span> <span class="fw">графику,</span> <span class="fw">которую</span> <span class="fw">хочется</span> <span class="fw">рассматривать.</span></p></div>
+  </section>
+
+  <section class="hw" id="works" aria-labelledby="works-title">
+    <div class="hw__pin">
+      <div class="wrap">
+        <header class="shead shead--hw" data-num="01">
+          <span class="shead__no mono">(01)</span>
+          <h2 class="shead__title" id="works-title" data-split>Избранные <em>работы</em></h2>
+          <p class="shead__sub" data-rv>Несколько проектов, в которых видно, как я думаю: от идеи до готового продукта.</p>
+          <a class="link" href="works.html" data-rv>Все работы <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </header>
       </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--tall" data-cats="digital-art graphic" data-rv style="--tone:#1c2230;--i:1">
-    <a class="work__link" href="works/vinyl-covers.html" data-cursor="Открыть">
-      <div class="work__media"><img class="" src="../assets/img/works/vinyl-covers/fan-1600.webp" srcset="../assets/img/works/vinyl-covers/fan-1600.webp 1600w, ../assets/img/works/vinyl-covers/fan-800.webp 800w" sizes="(max-width: 760px) 100vw, 34vw" width="1600" height="978" alt="Vinyl Covers: Генеративная система обложек: 36 уникальных обложек из 13 стилей, нарисованных кодом." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">02</span>
-        <h3 class="work__title">Vinyl Covers</h3>
-        <p class="work__sum">Генеративная система обложек: 36 уникальных обложек из 13 стилей, нарисованных кодом.</p>
-        <p class="work__cats mono"><span>Digital art</span><span>Графический дизайн</span><span>2026</span></p>
+      <div class="hw__track" data-hscroll>
+        <article class="hcard hcard--xl" style="--tone:#8e1b27">
+      <a class="hcard__link" href="works/nocturne.html" data-cursor="Открыть">
+        <span class="hcard__num" aria-hidden="true">01</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1600" height="1000" alt="NOCTURNE: Интернет-магазин виниловых пластинок, который читается как независимый музыкальный журнал." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">NOCTURNE</h3>
+          <p class="hcard__cats mono">Веб-дизайн / UI/UX — 2026</p>
+          <p class="hcard__sum">Интернет-магазин виниловых пластинок, который читается как независимый музыкальный журнал.</p>
+        </div>
+      </a>
+    </article><article class="hcard hcard--tall" style="--tone:#1c2230">
+      <a class="hcard__link" href="works/vinyl-covers.html" data-cursor="Открыть">
+        <span class="hcard__num" aria-hidden="true">02</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/vinyl-covers/fan-1600.webp" srcset="../assets/img/works/vinyl-covers/fan-1600.webp 1600w, ../assets/img/works/vinyl-covers/fan-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1600" height="978" alt="Vinyl Covers: Генеративная система обложек: 36 уникальных обложек из 13 стилей, нарисованных кодом." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">Vinyl Covers</h3>
+          <p class="hcard__cats mono">Digital art / Графический дизайн — 2026</p>
+          <p class="hcard__sum">Генеративная система обложек: 36 уникальных обложек из 13 стилей, нарисованных кодом.</p>
+        </div>
+      </a>
+    </article><article class="hcard hcard--m" style="--tone:#5b1018">
+      <a class="hcard__link" href="works/case-carousel.html" data-cursor="Открыть">
+        <span class="hcard__num" aria-hidden="true">03</span>
+        <div class="hcard__media"><div class="hcard__img"><img class="" src="../assets/img/works/case-carousel/s01-1080.webp" srcset="../assets/img/works/case-carousel/s01-1080.webp 1080w, ../assets/img/works/case-carousel/s01-800.webp 800w" sizes="(max-width: 860px) 86vw, 60vw" width="1080" height="1350" alt="NOCTURNE Carousel: Карусель из 11 слайдов, которая рассказывает кейс NOCTURNE в формате Instagram." loading="lazy" decoding="async"></div></div>
+        <div class="hcard__meta">
+          <h3 class="hcard__title">NOCTURNE Carousel</h3>
+          <p class="hcard__cats mono">Графический дизайн — 2026</p>
+          <p class="hcard__sum">Карусель из 11 слайдов, которая рассказывает кейс NOCTURNE в формате Instagram.</p>
+        </div>
+      </a>
+    </article>
+        <article class="hcard hcard--yours">
+          <a class="hcard__link" href="contact.html" data-cursor="Обсудить проект">
+            <div class="yours"><span class="yours__plus" aria-hidden="true"></span><h3 class="yours__title">Здесь может быть ваш проект</h3><p class="yours__text">Расскажите о задаче, и я предложу, как её решить.</p><span class="yours__cta mono">Обсудить проект <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></div>
+          </a>
+        </article>
       </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--m" data-cats="graphic" data-rv style="--tone:#5b1018;--i:2">
-    <a class="work__link" href="works/case-carousel.html" data-cursor="Открыть">
-      <div class="work__media"><img class="" src="../assets/img/works/case-carousel/s01-1080.webp" srcset="../assets/img/works/case-carousel/s01-1080.webp 1080w, ../assets/img/works/case-carousel/s01-800.webp 800w" sizes="(max-width: 760px) 100vw, 42vw" width="1080" height="1350" alt="NOCTURNE Carousel: Карусель из 11 слайдов, которая рассказывает кейс NOCTURNE в формате Instagram." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">03</span>
-        <h3 class="work__title">NOCTURNE Carousel</h3>
-        <p class="work__sum">Карусель из 11 слайдов, которая рассказывает кейс NOCTURNE в формате Instagram.</p>
-        <p class="work__cats mono"><span>Графический дизайн</span><span>2026</span></p>
-      </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--yours" data-cats="*" data-rv>
-    <a class="work__link" href="contact.html" data-cursor="Обсудить проект">
-      <div class="yours">
-        <span class="yours__plus" aria-hidden="true"></span>
-        <h3 class="yours__title">Здесь может быть ваш проект</h3>
-        <p class="yours__text">Расскажите о задаче, и я предложу, как её решить.</p>
-        <span class="yours__cta mono">Обсудить проект <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </a>
-  </article></div>
+      <div class="wrap hw__foot"><span class="mono hw__hint">Листайте — работы едут вбок →</span><div class="hw__bar"><i></i></div></div>
     </div>
   </section>
 
@@ -141,14 +144,14 @@
   <section class="sect approach-teaser" aria-labelledby="ap-title">
     <div class="wrap at">
       <span class="shead__no mono">(02) Подход</span>
-      <h2 class="at__text" id="ap-title" data-split>Дизайн для меня начинается с вопроса «зачем?», а заканчивается тем, что работает у живых людей на живых экранах.</h2>
+      <h2 class="at__text" id="ap-title" data-fill><span class="fw">Дизайн</span> <span class="fw">для</span> <span class="fw">меня</span> <span class="fw">начинается</span> <span class="fw">с</span> <span class="fw">вопроса</span> <span class="fw">«зачем?»,</span> <span class="fw">а</span> <span class="fw">заканчивается</span> <span class="fw">тем,</span> <span class="fw">что</span> <span class="fw">работает</span> <span class="fw">у</span> <span class="fw">живых</span> <span class="fw">людей</span> <span class="fw">на</span> <span class="fw">живых</span> <span class="fw">экранах.</span></h2>
       <a class="link" href="about.html" data-rv>Подробнее обо мне <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 
   <section class="sect" aria-labelledby="sv-title">
     <div class="wrap">
-      <header class="shead">
+      <header class="shead" data-num="03">
         <span class="shead__no mono">(03)</span>
         <h2 class="shead__title" id="sv-title" data-split>Чем могу <em>помочь</em></h2>
         <a class="link" href="services.html" data-rv>Все услуги <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
@@ -156,32 +159,32 @@
       <ol class="srows">
         <li data-rv style="--i:0"><a class="srow" href="services.html#web">
           <span class="srow__no mono">01</span>
-          <span class="srow__name">Веб-дизайн</span>
+          <span class="srow__name" data-scramble>Веб-дизайн</span>
           <span class="srow__desc">Сайты, у которых есть характер, и которые при этом удобно читать, листать и покупать.</span>
           <span class="glyph glyph--web" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:1"><a class="srow" href="services.html#uiux">
           <span class="srow__no mono">02</span>
-          <span class="srow__name">UI/UX-дизайн</span>
+          <span class="srow__name" data-scramble>UI/UX-дизайн</span>
           <span class="srow__desc">Интерфейсы, в которых путь пользователя продуман раньше, чем цвет кнопок.</span>
           <span class="glyph glyph--uiux" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:2"><a class="srow" href="services.html#branding">
           <span class="srow__no mono">03</span>
-          <span class="srow__name">Брендинг и айдентика</span>
+          <span class="srow__name" data-scramble>Брендинг и айдентика</span>
           <span class="srow__desc">Визуальный язык бренда: от логотипа до правил, по которым его используют.</span>
           <span class="glyph glyph--branding" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:3"><a class="srow" href="services.html#graphic">
           <span class="srow__no mono">04</span>
-          <span class="srow__name">Графический дизайн</span>
+          <span class="srow__name" data-scramble>Графический дизайн</span>
           <span class="srow__desc">Печатные и digital-носители, которые выглядят как часть одной системы.</span>
           <span class="glyph glyph--graphic" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:4"><a class="srow" href="services.html#digital">
           <span class="srow__no mono">05</span>
-          <span class="srow__name">Digital-дизайн</span>
+          <span class="srow__name" data-scramble>Digital-дизайн</span>
           <span class="srow__desc">Графика для экранов: генеративные визуалы, баннеры, обложки, визуалы для запусков.</span>
           <span class="glyph glyph--digital" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li><li data-rv style="--i:5"><a class="srow" href="services.html#3d">
           <span class="srow__no mono">06</span>
-          <span class="srow__name">3D-визуализация</span>
+          <span class="srow__name" data-scramble>3D-визуализация</span>
           <span class="srow__desc">Визуализация интерьеров и предметов, чтобы увидеть идею до того, как её построят.</span>
           <span class="glyph glyph--3d" aria-hidden="true"><i></i><i></i><i></i></span>
         </a></li>
@@ -190,6 +193,10 @@
   </section>
   <section class="finale" id="contact" aria-labelledby="finale-title">
     <div class="finale__orb" aria-hidden="true"></div>
+    <a class="badge" href="contact.html" aria-label="Контакт">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#badge-c" textLength="488">Напишите мне • Обсудим проект • Напишите мне • Обсудим проект • </textPath></text></svg>
+    <span class="badge__arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+  </a>
     <div class="wrap">
       <p class="kicker mono" data-rv><span class="status is-on"></span>Открыта для новых проектов</p>
       <h2 class="finale__title" id="finale-title" data-split>Давайте сделаем<br>что-то <em>заметное</em></h2>
@@ -222,8 +229,18 @@
       <button class="mono ftr__top" type="button" data-top>Наверх ↑</button>
     </div>
   </footer>
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true"><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">i</span><span style="--i:4">w</span><span style="--i:5">e</span><span style="--i:6">c</span><span style="--i:7">h</span><span style="--i:8">k</span><span style="--i:9">a</span><i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>Фриланс-дизайнер</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/vendor/gsap.min.js" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/motion.js" defer></script>
 </body>
 </html>

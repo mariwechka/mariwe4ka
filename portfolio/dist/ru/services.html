@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/main.css">
 
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','ru');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="page-services " style="" data-ui='{&quot;copied&quot;:&quot;Скопировано&quot;,&quot;copyFail&quot;:&quot;Не удалось скопировать — выделите текст вручную&quot;,&quot;view&quot;:&quot;Открыть&quot;,&quot;formError&quot;:&quot;Напишите хотя бы пару слов о проекте&quot;}'>
 <a class="skip" href="#main">Перейти к содержимому</a>
@@ -36,7 +36,7 @@
       <span class="logo__mark" aria-hidden="true">M<i></i></span><span class="logo__name">Mariwechka</span>
     </a>
     <nav class="nav" aria-label="Меню">
-      <a href="works.html" ><sup>01</sup>Работы</a><a href="about.html" ><sup>02</sup>Обо мне</a><a href="services.html" aria-current="page"><sup>03</sup>Услуги</a><a href="contact.html" ><sup>04</sup>Контакт</a>
+      <a href="works.html" ><sup>01</sup><span data-scramble>Работы</span></a><a href="about.html" ><sup>02</sup><span data-scramble>Обо мне</span></a><a href="services.html" aria-current="page"><sup>03</sup><span data-scramble>Услуги</span></a><a href="contact.html" ><sup>04</sup><span data-scramble>Контакт</span></a>
     </nav>
     <nav class="lang " aria-label="Язык">
     <a href="services.html" hreflang="ru" lang="ru" data-lang="ru" aria-current="true" title="Русский">RU</a><a href="../en/services.html" hreflang="en" lang="en" data-lang="en"  title="English">EN</a><a href="../az/services.html" hreflang="az" lang="az" data-lang="az"  title="Azərbaycanca">AZ</a>
@@ -109,12 +109,16 @@
   </section>
   <section class="sect">
     <div class="wrap">
-      <header class="shead"><span class="shead__no mono">→</span><h2 class="shead__title" data-split>Как проходит <em>работа</em></h2></header>
+      <header class="shead" data-num="→"><span class="shead__no mono">→</span><h2 class="shead__title" data-split>Как проходит <em>работа</em></h2></header>
       <ol class="steps"><li data-rv style="--i:0"><span class="steps__no mono">01</span><h3>Знакомство</h3><p>Короткий созвон или переписка: задача, сроки, ожидания.</p></li><li data-rv style="--i:1"><span class="steps__no mono">02</span><h3>Концепция</h3><p>Предлагаю направление: референсы, первые эскизы, логику.</p></li><li data-rv style="--i:2"><span class="steps__no mono">03</span><h3>Дизайн</h3><p>Развиваю выбранное направление, показываю промежуточные этапы.</p></li><li data-rv style="--i:3"><span class="steps__no mono">04</span><h3>Передача</h3><p>Готовые файлы, макеты или сайт и рекомендации по использованию.</p></li></ol>
     </div>
   </section>
   <section class="finale" id="contact" aria-labelledby="finale-title">
     <div class="finale__orb" aria-hidden="true"></div>
+    <a class="badge" href="contact.html" aria-label="Контакт">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#badge-c" textLength="488">Напишите мне • Обсудим проект • Напишите мне • Обсудим проект • </textPath></text></svg>
+    <span class="badge__arrow" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+  </a>
     <div class="wrap">
       <p class="kicker mono" data-rv><span class="status is-on"></span>Открыта для новых проектов</p>
       <h2 class="finale__title" id="finale-title" data-split>Давайте сделаем<br>что-то <em>заметное</em></h2>
@@ -147,8 +151,18 @@
       <button class="mono ftr__top" type="button" data-top>Наверх ↑</button>
     </div>
   </footer>
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true"><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><span class="veil__bar"></span><p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name"><span style="--i:0">M</span><span style="--i:1">a</span><span style="--i:2">r</span><span style="--i:3">i</span><span style="--i:4">w</span><span style="--i:5">e</span><span style="--i:6">c</span><span style="--i:7">h</span><span style="--i:8">k</span><span style="--i:9">a</span><i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>Фриланс-дизайнер</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/vendor/gsap.min.js" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/motion.js" defer></script>
 </body>
 </html>

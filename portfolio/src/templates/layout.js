@@ -34,7 +34,7 @@ const langSwitch = (lang, alt, page, cls = '') => {
 
 const header = (lang, page, key, alt) => {
   const T = i18n[lang];
-  const link = (k, label, n) => `<a href="${rel(page, routes[k](lang))}" ${key === k ? 'aria-current="page"' : ''}><sup>${n}</sup>${label}</a>`;
+  const link = (k, label, n) => `<a href="${rel(page, routes[k](lang))}" ${key === k ? 'aria-current="page"' : ''}><sup>${n}</sup><span data-scramble>${label}</span></a>`;
   return `<header class="hdr" id="hdr">
     <a class="logo" href="${rel(page, routes.home(lang))}" aria-label="${esc(config.name)} — ${T.nav.home}">
       <span class="logo__mark" aria-hidden="true">${esc(config.monogram)}<i></i></span><span class="logo__name">${esc(config.name)}</span>
@@ -78,11 +78,22 @@ const contactRows = lang => {
     </div>`;
 };
 
+/** Rotating circular text badge that links to the contact page */
+const badge = (lang, page) => {
+  const T = i18n[lang];
+  const text = esc(T.contact.badge.repeat(2));
+  return `<a class="badge" href="${rel(page, routes.contact(lang))}" aria-label="${esc(T.nav.contact)}">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="badge-c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#badge-c" textLength="488">${text}</textPath></text></svg>
+    <span class="badge__arrow" aria-hidden="true">${icon.arrowUR}</span>
+  </a>`;
+};
+
 /** Final call-to-action shown at the end of every page */
 const finale = (lang, page, { withTitle = true } = {}) => {
   const T = i18n[lang];
   return `<section class="finale" id="contact" aria-labelledby="finale-title">
     <div class="finale__orb" aria-hidden="true"></div>
+    ${badge(lang, page)}
     <div class="wrap">
       <p class="kicker mono" data-rv><span class="status ${config.available ? 'is-on' : ''}"></span>${config.available ? T.status.on : T.status.off}</p>
       ${withTitle ? `<h2 class="finale__title" id="finale-title" data-split>${T.contact.title}</h2>` : `<h2 class="sr-only" id="finale-title">${T.nav.contact}</h2>`}
@@ -142,7 +153,7 @@ ${config.languages.filter(l => l !== o.lang).map(l => `<meta property="og:locale
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="${rel(o.page, 'assets/css/main.css')}">
 ${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld)}</script>` : ''}
-<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','${o.lang}');if(sessionStorage.getItem('pf:veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('is-arriving')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','${o.lang}');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
 </head>
 <body class="${o.bodyClass || ''} ${o.theme ? 'themed themed--' + o.theme.mode : ''}" style="${themeVars}" data-ui='${esc(JSON.stringify(ui))}'>
 <a class="skip" href="#main">${T.nav.skip}</a>
@@ -151,11 +162,21 @@ ${header(o.lang, o.page, o.key, o.alt)}
 ${o.body}
 </main>
 ${footer(o.lang, o.page, o.alt)}
-<div class="veil" aria-hidden="true"><span class="veil__dot"></span></div>
+<div class="veil" aria-hidden="true">${'<span class="veil__bar"></span>'.repeat(5)}<p class="veil__label"></p></div>
+<div class="pre" aria-hidden="true">
+  <div class="pre__name">${[...config.name].map((c, i) => `<span style="--i:${i}">${esc(c)}</span>`).join('')}<i class="pre__dot"></i></div>
+  <div class="pre__meta mono"><span>${T.role}</span><span class="pre__count">000</span></div>
+  <div class="pre__bar"><i></i></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div class="toast" role="status" aria-live="polite"></div>
+<script src="${rel(o.page, 'assets/js/vendor/gsap.min.js')}" defer></script>
+<script src="${rel(o.page, 'assets/js/vendor/ScrollTrigger.min.js')}" defer></script>
+<script src="${rel(o.page, 'assets/js/vendor/lenis.min.js')}" defer></script>
 <script src="${rel(o.page, 'assets/js/main.js')}" defer></script>
+<script src="${rel(o.page, 'assets/js/motion.js')}" defer></script>
 </body>
 </html>`;
 };
 
-module.exports = { layout, routes, icon, finale, contactRows, tgUrl };
+module.exports = { layout, routes, icon, finale, contactRows, tgUrl, badge };
