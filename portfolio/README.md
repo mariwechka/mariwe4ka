@@ -44,8 +44,15 @@ cd dist && python3 -m http.server 8000   # открыть http://localhost:8000
 `phones`, `strip` (горизонтальная лента), `grid-note`, `quote`, `text`.
 `hero`: `image`, `type` или `split`. `theme`: свои цвета страницы.
 
-**Категории** (`graphic`, `web`, `uiux`, `branding`, `identity`, `3d`, `digital-art`) переведены в `src/i18n.js` → `categories`.
-Фильтр на странице «Работы» показывает только те категории, в которых есть проекты.
+**Категории** работ задаются в `src/config.js` → `workCategories` (сейчас `sites` — «Сайты» и `presentations` — «Презентации»),
+названия на трёх языках — в `src/i18n.js` → `categories`, текст для пустой категории — `works.emptyBy`.
+У проекта укажите `categories: ['sites']` или `['presentations']`.
+
+**Черновики.** `published: false` скрывает проект с сайта, но оставляет его в данных.
+Так сейчас лежат «Vinyl Covers» и «NOCTURNE Carousel» — чтобы вернуть, удалите эту строку и поменяйте им категорию.
+
+**Новые блоки для кейсов:** `chapter` (номер и заголовок главы), `cols` (тезисы в колонках), `table`, `palette`, `specimens` (образцы шрифтов;
+сами шрифты проекта подключаются полем `fonts`).
 
 ## Фотография на странице «Обо мне»
 

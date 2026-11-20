@@ -208,10 +208,13 @@
         const on = !cat || cats.includes(cat) || cats.includes('*');
         if (on && !cats.includes('*')) shown++;
         card.classList.toggle('is-hiding', !on);
+        if (on) card.classList.add('in');
         if (on && !reduced) { card.animate([{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'none' }], { duration: 500, easing: 'cubic-bezier(.2,.8,.2,1)' }); }
       });
       btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
+      if (window.ScrollTrigger) requestAnimationFrame(() => window.ScrollTrigger.refresh());
       empty.hidden = shown > 0;
+      empty.textContent = (cat && empty.dataset['msg' + cat.charAt(0).toUpperCase() + cat.slice(1)]) || empty.dataset.default;
       if (push) { const u = new URL(location.href); if (cat) u.searchParams.set('cat', cat); else u.searchParams.delete('cat'); history.replaceState(null, '', u); }
     };
     btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.filter, true)));

@@ -23,6 +23,9 @@ module.exports = {
   // Tools listed on the About page — keep only the ones you really use.
   tools: ['Figma', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Blender', 'HTML / CSS / JS'],
 
+  // Categories of the Works section, in display order (labels are in i18n.js → categories)
+  workCategories: ['sites', 'presentations'],
+
   languages: ['ru', 'en', 'az'],
   defaultLanguage: 'ru'
 };

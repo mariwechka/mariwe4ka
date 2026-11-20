@@ -109,7 +109,7 @@ const home = (lang, page) => {
 /* ===================== WORKS ===================== */
 const works = (lang, page) => {
   const T = i18n[lang];
-  const cats = [...new Set(projects.flatMap(p => p.categories))];
+  const cats = config.workCategories;
   const count = c => projects.filter(p => !c || p.categories.includes(c)).length;
   return `
   <section class="phead">
@@ -125,8 +125,9 @@ const works = (lang, page) => {
   </section>
   <section class="sect sect--tight" aria-label="${T.works.title}">
     <div class="wrap">
+      <p class="works__empty" data-empty data-default="${esc(T.works.empty)}" ${Object.entries(T.works.emptyBy || {}).map(([k, v]) => `data-msg-${k}="${esc(v)}"`).join(' ')} hidden>${T.works.empty}</p>
       <div class="works works--all" data-works>${projects.map((p, i) => workCard(p, lang, page, i)).join('')}${yoursCard(lang, page)}</div>
-      <p class="works__empty" data-empty hidden>${T.works.empty}</p>
+
     </div>
   </section>
   ${finale(lang, page)}`;
@@ -144,6 +145,11 @@ const block = (b, lang, page, p) => {
     case 'phones': return `<figure class="pb wrap" data-rv><div class="phones">${b.imgs.map((k, i) => `<div class="phone" style="--k:${i}">${img(page, k, t(b.caption, lang), { sizes: '(max-width: 760px) 45vw, 22vw' })}</div>`).join('')}</div>${cap}</figure>`;
     case 'strip': return `<figure class="pb" data-rv><div class="strip" tabindex="0" data-drag aria-label="${esc(t(b.caption, lang))}">${b.imgs.map((k, i) => `<div class="strip__item">${img(page, k, `${p.title} — ${i + 1}/${b.imgs.length}`, { sizes: '(max-width: 760px) 70vw, 30vw' })}<span class="mono">${String(i + 1).padStart(2, '0')} ${i18n[lang].project.of} ${b.imgs.length}</span></div>`).join('')}</div><div class="wrap">${cap}</div></figure>`;
     case 'grid-note': return `<section class="pb wrap gnote"><div class="frame" data-rv>${img(page, b.img, t(b.title, lang), { sizes: '(max-width: 760px) 100vw, 45vw' })}</div><div class="gnote__text" data-rv><h2>${esc(t(b.title, lang))}</h2><p>${esc(t(b.body, lang))}</p></div></section>`;
+    case 'chapter': return `<header class="pb wrap pchap" data-rv><span class="pchap__no">${esc(b.no)}</span><h2 class="pchap__title" data-split>${esc(t(b.title, lang))}</h2></header>`;
+    case 'cols': return `<section class="pb wrap pcols">${b.items.map(([h, d], i) => `<div data-rv style="--i:${i}"><span class="mono">${String(i + 1).padStart(2, '0')}</span><h3>${esc(t(h, lang))}</h3><p>${esc(t(d, lang))}</p></div>`).join('')}</section>`;
+    case 'table': return `<section class="pb wrap" data-rv><div class="ptable-wrap"><table class="ptable ${b.mono ? 'ptable--mono' + b.mono : ''}"><thead><tr>${b.head.map(h => `<th class="mono">${esc(t(h, lang))}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r => `<tr>${r.map(c => `<td>${esc(t(c, lang))}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+    case 'palette': return `<section class="pb wrap" data-rv><div class="ppal">${b.colors.map(([hex, n, role]) => `<div style="--c:${hex}" class="${parseInt(hex.slice(1, 3), 16) > 160 ? 'is-light' : ''}"><b>${esc(t(n, lang))}</b><span class="mono">${hex.toUpperCase()} · ${esc(t(role, lang))}</span></div>`).join('')}</div></section>`;
+    case 'specimens': return `<section class="pb wrap pspec">${b.items.map(([font, role, sample, cls]) => `<div class="pspec__row" data-rv><div class="pspec__meta"><b>${esc(font)}</b><span class="mono">${esc(t(role, lang))}</span></div><div class="pspec__sample ${cls}">${esc(t(sample, lang))}</div></div>`).join('')}</section>`;
     case 'quote': return `<section class="pb wrap"><blockquote class="pquote" data-split>${esc(t(b.text, lang))}</blockquote></section>`;
     case 'text': return `<section class="pb wrap ptext"><h2 class="mono" data-rv>${esc(t(b.title, lang))}</h2><p data-rv>${esc(t(b.body, lang))}</p></section>`;
     default: return '';
@@ -178,9 +184,9 @@ const project = (lang, page, p) => {
 
   return `${heroHtml}
   <div class="pblocks">${p.blocks.map(b => block(b, lang, page, p)).join('')}</div>
-  <a class="pnext" href="${rel(page, routes.project(lang, next.slug))}" style="--tone:${next.card.tone}" data-cursor="${esc(T.works.view)}">
+${next !== p ? `  <a class="pnext" href="${rel(page, routes.project(lang, next.slug))}" style="--tone:${next.card.tone}" data-cursor="${esc(T.works.view)}">
     <span class="wrap pnext__in"><span class="mono">${T.project.next} →</span><b>${esc(next.title)}</b><span class="pnext__sum">${esc(t(next.summary, lang))}</span></span>
-  </a>
+  </a>` : ''}
   ${finale(lang, page)}`;
 };
 
@@ -211,7 +217,7 @@ const about = (lang, page) => {
     <div class="wrap kit">
       <div data-rv><h2 class="mono kit__h">(02) ${A.skillsTitle}</h2><ul class="tags">${A.skills.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
       <div data-rv><h2 class="mono kit__h">(03) ${A.toolsTitle}</h2><ul class="kit__list">${tools.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
-      <div data-rv><h2 class="mono kit__h">(04) ${A.directionsTitle}</h2><ul class="kit__list">${Object.values(T.categories).map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
+      <div data-rv><h2 class="mono kit__h">(04) ${A.directionsTitle}</h2><ul class="kit__list">${T.disciplines.map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
     </div>
   </section>
   ${finale(lang, page)}`;

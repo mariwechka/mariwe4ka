@@ -25,6 +25,7 @@
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200..900&family=Spectral:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
 <link rel="stylesheet" href="../assets/css/main.css">
 
 <script>(function(d){d.classList.add('js');try{localStorage.setItem('pf:lang','az');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&sessionStorage.getItem('pf:veil')){d.classList.add('is-arriving');d.dataset.veil=sessionStorage.getItem('pf:veil')}if(!rm&&!sessionStorage.getItem('pf:seen'))d.classList.add('is-preload')}catch(e){}})(document.documentElement)</script>
@@ -61,47 +62,26 @@
 
   <section class="phead">
     <div class="wrap">
-      <p class="mono phead__kick" data-rv>(03) layihə</p>
+      <p class="mono phead__kick" data-rv>(01) layihə</p>
       <h1 class="phead__title" data-split>İşlər</h1>
-      <p class="phead__intro" data-rv>Saytlar, interfeyslər, qrafika və vizual sistemlər. Hər layihə ayrıca keys kimi açılır.</p>
+      <p class="phead__intro" data-rv>Saytlar və təqdimatlar. Hər layihə ətraflı keys kimi açılır: tapşırıq, ideya, proses və nəticə.</p>
       <div class="filters" role="group" aria-label="Kateqoriyaya görə filtr" data-rv>
-        <button class="chip" type="button" data-filter="" aria-pressed="true">Hamısı<sup>3</sup></button>
-        <button class="chip" type="button" data-filter="web" aria-pressed="false">Veb dizayn<sup>1</sup></button><button class="chip" type="button" data-filter="uiux" aria-pressed="false">UI/UX<sup>1</sup></button><button class="chip" type="button" data-filter="digital-art" aria-pressed="false">Rəqəmsal incəsənət<sup>1</sup></button><button class="chip" type="button" data-filter="graphic" aria-pressed="false">Qrafik dizayn<sup>2</sup></button>
+        <button class="chip" type="button" data-filter="" aria-pressed="true">Hamısı<sup>1</sup></button>
+        <button class="chip" type="button" data-filter="sites" aria-pressed="false">Saytlar<sup>1</sup></button><button class="chip" type="button" data-filter="presentations" aria-pressed="false">Təqdimatlar<sup>0</sup></button>
       </div>
     </div>
   </section>
   <section class="sect sect--tight" aria-label="İşlər">
     <div class="wrap">
-      <div class="works works--all" data-works><article class="work work--xl" data-cats="web uiux" data-rv style="--tone:#8e1b27;--i:0">
+      <p class="works__empty" data-empty data-default="Bu kateqoriyada hələ layihə yoxdur." data-msg-presentations="Animasiyalı təqdimatlar hazırlanır — tezliklə burada olacaq." hidden>Bu kateqoriyada hələ layihə yoxdur.</p>
+      <div class="works works--all" data-works><article class="work work--xl" data-cats="sites" data-rv style="--tone:#8e1b27;--i:0">
     <a class="work__link" href="works/nocturne.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 760px) 100vw, 66vw" width="1600" height="1000" alt="NOCTURNE: Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
+      <div class="work__media"><img class="" src="../assets/img/works/nocturne/hero-1600.webp" srcset="../assets/img/works/nocturne/hero-1600.webp 1600w, ../assets/img/works/nocturne/hero-800.webp 800w" sizes="(max-width: 760px) 100vw, 66vw" width="1600" height="1000" alt="NOCTURNE: Keys: müstəqil musiqi jurnalı kimi oxunan və tam funksional mağaza kimi işləyən vinil val onlayn mağazası." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
       <div class="work__meta">
         <span class="work__no mono">01</span>
         <h3 class="work__title">NOCTURNE</h3>
-        <p class="work__sum">Müstəqil musiqi jurnalı kimi oxunan vinil val onlayn mağazası.</p>
-        <p class="work__cats mono"><span>Veb dizayn</span><span>UI/UX</span><span>2026</span></p>
-      </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--tall" data-cats="digital-art graphic" data-rv style="--tone:#1c2230;--i:1">
-    <a class="work__link" href="works/vinyl-covers.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/vinyl-covers/fan-1600.webp" srcset="../assets/img/works/vinyl-covers/fan-1600.webp 1600w, ../assets/img/works/vinyl-covers/fan-800.webp 800w" sizes="(max-width: 760px) 100vw, 34vw" width="1600" height="978" alt="Vinyl Covers: Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">02</span>
-        <h3 class="work__title">Vinyl Covers</h3>
-        <p class="work__sum">Generativ üz qabığı sistemi: 13 üslubda kodla çəkilmiş 36 unikal üz qabığı.</p>
-        <p class="work__cats mono"><span>Rəqəmsal incəsənət</span><span>Qrafik dizayn</span><span>2026</span></p>
-      </div>
-      <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-    </a>
-  </article><article class="work work--m" data-cats="graphic" data-rv style="--tone:#5b1018;--i:2">
-    <a class="work__link" href="works/case-carousel.html" data-cursor="Aç">
-      <div class="work__media"><img class="" src="../assets/img/works/case-carousel/s01-1080.webp" srcset="../assets/img/works/case-carousel/s01-1080.webp 1080w, ../assets/img/works/case-carousel/s01-800.webp 800w" sizes="(max-width: 760px) 100vw, 42vw" width="1080" height="1350" alt="NOCTURNE Carousel: NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel." loading="lazy" decoding="async"><span class="work__shade" aria-hidden="true"></span></div>
-      <div class="work__meta">
-        <span class="work__no mono">03</span>
-        <h3 class="work__title">NOCTURNE Carousel</h3>
-        <p class="work__sum">NOCTURNE keysini Instagram formatında danışan 11 slaydlı karusel.</p>
-        <p class="work__cats mono"><span>Qrafik dizayn</span><span>2026</span></p>
+        <p class="work__sum">Keys: müstəqil musiqi jurnalı kimi oxunan və tam funksional mağaza kimi işləyən vinil val onlayn mağazası.</p>
+        <p class="work__cats mono"><span>Saytlar</span><span>2026</span></p>
       </div>
       <span class="work__go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
     </a>
@@ -115,7 +95,7 @@
       </div>
     </a>
   </article></div>
-      <p class="works__empty" data-empty hidden>Bu kateqoriyada hələ layihə yoxdur.</p>
+
     </div>
   </section>
   <section class="finale" id="contact" aria-labelledby="finale-title">

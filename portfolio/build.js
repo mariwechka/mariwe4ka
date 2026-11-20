@@ -41,7 +41,7 @@ for (const lang of config.languages) {
   }
   for (const p of projects) {
     const page = routes.project(lang, p.slug);
-    write(page, layout({ lang, page, key: 'project', alt: alts(l => routes.project(l, p.slug)), title: p.title, desc: t(p.summary, lang), body: P.project(lang, page, p), theme: p.theme, bodyClass: 'page-project',
+    write(page, layout({ lang, page, key: 'project', alt: alts(l => routes.project(l, p.slug)), title: p.title, desc: t(p.summary, lang), body: P.project(lang, page, p), theme: p.theme, fonts: p.fonts, bodyClass: 'page-project',
       jsonld: { '@context': 'https://schema.org', '@type': 'CreativeWork', name: p.title, description: t(p.summary, lang), dateCreated: String(p.year), creator: { '@type': 'Person', name: config.name } } }));
     pages.push(page);
   }

@@ -45,17 +45,20 @@ module.exports = {
 
     works: {
       title: 'Работы',
-      intro: 'Сайты, интерфейсы, графика и визуальные системы. Каждый проект открывается как отдельный кейс.',
+      intro: 'Сайты и презентации. Каждый проект открывается как подробный кейс: задача, идея, процесс и результат.',
       all: 'Все',
       count: ['проект', 'проекта', 'проектов'],
       view: 'Открыть',
       empty: 'В этой категории пока нет проектов.',
+      emptyBy: { presentations: 'Анимированные презентации готовятся — скоро появятся здесь.' },
       yoursTitle: 'Здесь может быть ваш проект',
       yoursText: 'Расскажите о задаче, и я предложу, как её решить.',
       yoursCta: 'Обсудить проект'
     },
 
     categories: {
+      'sites': 'Сайты',
+      'presentations': 'Презентации',
       'graphic': 'Графический дизайн',
       'web': 'Веб-дизайн',
       'uiux': 'UI/UX',
@@ -194,17 +197,20 @@ module.exports = {
 
     works: {
       title: 'Works',
-      intro: 'Websites, interfaces, graphics and visual systems. Each project opens as a full case study.',
+      intro: 'Websites and presentations. Each project opens as a full case study: the brief, the idea, the process and the result.',
       all: 'All',
       count: ['project', 'projects', 'projects'],
       view: 'View',
       empty: 'No projects in this category yet.',
+      emptyBy: { presentations: 'Animated presentations are on the way — they’ll appear here soon.' },
       yoursTitle: 'Your project could be here',
       yoursText: 'Tell me about the task and I’ll suggest how to approach it.',
       yoursCta: 'Discuss a project'
     },
 
     categories: {
+      'sites': 'Websites',
+      'presentations': 'Presentations',
       'graphic': 'Graphic design',
       'web': 'Web design',
       'uiux': 'UI/UX',
@@ -343,17 +349,20 @@ module.exports = {
 
     works: {
       title: 'İşlər',
-      intro: 'Saytlar, interfeyslər, qrafika və vizual sistemlər. Hər layihə ayrıca keys kimi açılır.',
+      intro: 'Saytlar və təqdimatlar. Hər layihə ətraflı keys kimi açılır: tapşırıq, ideya, proses və nəticə.',
       all: 'Hamısı',
       count: ['layihə', 'layihə', 'layihə'],
       view: 'Aç',
       empty: 'Bu kateqoriyada hələ layihə yoxdur.',
+      emptyBy: { presentations: 'Animasiyalı təqdimatlar hazırlanır — tezliklə burada olacaq.' },
       yoursTitle: 'Burada sizin layihəniz ola bilər',
       yoursText: 'Tapşırıq haqqında danışın, həll yolunu təklif edim.',
       yoursCta: 'Layihəni müzakirə et'
     },
 
     categories: {
+      'sites': 'Saytlar',
+      'presentations': 'Təqdimatlar',
       'graphic': 'Qrafik dizayn',
       'web': 'Veb dizayn',
       'uiux': 'UI/UX',
