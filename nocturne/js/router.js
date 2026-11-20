@@ -40,6 +40,7 @@ N.router = (() => {
       main.innerHTML = page.render(params, query);
       document.body.dataset.page = page.id || 'page';
       N.ui.setActiveNav(page.nav || page.id);
+      N.fx.split(main);
       cleanup = page.mount ? page.mount(main, params, query) : null;
       N.ui.observeReveals(main);
       N.ui.initRails(main);
@@ -52,8 +53,24 @@ N.router = (() => {
       first = false;
     };
 
+    const samePage = current && current.page === page && page !== N.pages.product;
     if (first || reducedMotion()) swap();
-    else { main.classList.add('is-leaving'); setTimeout(swap, 220); }
+    else if (samePage) { main.classList.add('is-leaving'); setTimeout(swap, 180); }
+    else curtain(typeof page.title === 'function' ? page.title(params, query) : page.title, swap);
+  };
+
+  /** Full-screen wipe between different pages */
+  let busy = null;
+  const curtain = (label, swap) => {
+    const c = document.getElementById('curtain');
+    c.querySelector('[data-curtain-label]').textContent = label || 'NOCTURNE';
+    clearTimeout(busy);
+    c.classList.remove('is-out'); c.classList.add('is-in');
+    busy = setTimeout(() => {
+      swap();
+      c.classList.add('is-out');
+      busy = setTimeout(() => c.classList.remove('is-in', 'is-out'), 650);
+    }, 420);
   };
 
   /** Replace query without re-rendering (used by catalog filters) */

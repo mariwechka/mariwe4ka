@@ -49,7 +49,7 @@ N.pages.product = (() => {
         <div class="pdp__stage">
           <div class="pdp__deck" id="pdpDeck">
             <span class="disc disc--pdp" id="pdpDisc" style="${N.cover.labelVars(p)}"><span class="disc__label"><i></i></span><span class="disc__sheen"></span></span>
-            <div class="pdp__sleeve">${N.cover.svg(p)}</div>
+            <div class="pdp__sleeve sleeve__art ${C.wear(p)}">${N.cover.svg(p)}</div>
           </div>
           <div class="pdp__controls">
             <button class="chip" data-action="pdp-spin" aria-pressed="false" id="spinBtn"><span class="dot"></span> Поставить на проигрыватель</button>
@@ -102,6 +102,8 @@ N.pages.product = (() => {
         ${C.rail(similar)}
       </section>
 
+      ${(() => { const v = S.viewed(p.id).slice(0, 8); return v.length >= 2 ? `<section class="sec sec--viewed">${C.sectionHead('◷', 'Вы <em>смотрели</em>')}${C.rail(v)}</section>` : ''; })()}
+
       <div class="buybar" id="buybar">
         <span class="buybar__cover">${C.sleeve(p, { vinyl: false, label: false })}</span>
         <span class="buybar__t"><b>${esc(p.title)}</b><span>${price(p.price)}</span></span>
@@ -132,6 +134,7 @@ N.pages.product = (() => {
   const mount = el => {
     root = el;
     if (!p) return;
+    S.markViewed(p.id);
     const deck = qs('#pdpDeck', el);
     if (matchMedia('(pointer:fine)').matches && !N.utils.reducedMotion()) {
       const move = e => { const r = deck.getBoundingClientRect(); deck.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5).toFixed(3)); deck.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5).toFixed(3)); };

@@ -84,6 +84,59 @@ N.cover = (() => {
       s += `<circle cx="${480 - r() * 60}" cy="${120 + r() * 60}" r="18" fill="${ac}"/>`;
       return s;
     },
+
+    halftone(r, [bg, fg, ac]) {
+      let s = `<rect width="${S}" height="${S}" fill="${bg}"/>`;
+      const fx = 120 + r() * 360, fy = 120 + r() * 360, step = 24;
+      for (let y = step / 2; y < S; y += step) for (let x = step / 2; x < S; x += step) {
+        const d = Math.hypot(x - fx, y - fy) / 420;
+        const rad = Math.max(0, (1 - d) * step * 0.55);
+        if (rad > 0.6) s += `<circle cx="${x}" cy="${y}" r="${rad.toFixed(1)}" fill="${fg}"/>`;
+      }
+      s += `<rect x="${40 + r() * 80}" y="${380 + r() * 80}" width="${180 + r() * 120}" height="18" fill="${ac}"/>`;
+      return s;
+    },
+    ribbon(r, [bg, fg, ac]) {
+      let s = `<rect width="${S}" height="${S}" fill="${bg}"/>`;
+      for (let k = 0; k < 3; k++) {
+        const y0 = 120 + k * 150 + r() * 40;
+        const d = `M-40 ${y0} C ${150 + r() * 100} ${y0 - 200 + r() * 100}, ${300 + r() * 100} ${y0 + 200 - r() * 100}, 640 ${y0 - 40 + r() * 80}`;
+        s += `<path d="${d}" fill="none" stroke="${k === 1 ? ac : fg}" stroke-width="${k === 1 ? 46 : 14 + r() * 20}" stroke-linecap="round" opacity="${k === 1 ? 1 : .85}"/>`;
+      }
+      return s;
+    },
+    typogrid(r, [bg, fg, ac], p) {
+      const word = esc(p.artistName.toUpperCase());
+      let s = `<rect width="${S}" height="${S}" fill="${bg}"/>`;
+      const rows = 14, hot = 3 + Math.floor(r() * 8);
+      for (let i = 0; i < rows; i++) {
+        const y = 60 + i * 38, off = -r() * 400;
+        s += `<text x="${off}" y="${y}" font-family="Unbounded, sans-serif" font-weight="${i === hot ? 900 : 300}" font-size="30" letter-spacing="2" fill="${i === hot ? ac : fg}" opacity="${i === hot ? 1 : .18 + (i % 3) * .12}">${(word + ' · ').repeat(6)}</text>`;
+      }
+      return s;
+    },
+    mesh(r, [bg, fg, ac], p, uid) {
+      const g = (id, c) => `<radialGradient id="${id}"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
+      let s = `<defs>${g('a' + uid, ac)}${g('b' + uid, fg)}</defs><rect width="${S}" height="${S}" fill="${bg}"/>`;
+      s += `<circle cx="${150 + r() * 300}" cy="${150 + r() * 300}" r="${300 + r() * 80}" fill="url(#a${uid})"/>`;
+      s += `<circle cx="${100 + r() * 400}" cy="${100 + r() * 400}" r="${180 + r() * 80}" fill="url(#b${uid})" opacity=".55"/>`;
+      s += `<circle cx="300" cy="300" r="${120 + r() * 60}" fill="none" stroke="${fg}" stroke-width="1" opacity=".6"/>`;
+      s += `<line x1="300" y1="40" x2="300" y2="560" stroke="${fg}" stroke-width="1" opacity=".35"/>`;
+      return s;
+    },
+    moon(r, [bg, fg, ac]) {
+      let s = `<rect width="${S}" height="${S}" fill="${bg}"/>`;
+      const n = 7, y = 250 + r() * 100, hot = Math.floor(r() * n);
+      for (let i = 0; i < n; i++) {
+        const cx = 60 + i * 80, ph = i / (n - 1);
+        s += `<circle cx="${cx}" cy="${y}" r="30" fill="${i === hot ? ac : fg}"/>`;
+        s += `<circle cx="${cx + (ph - .5) * 64}" cy="${y}" r="30" fill="${bg}"/>`;
+        s += `<circle cx="${cx}" cy="${y}" r="30" fill="none" stroke="${fg}" stroke-opacity=".35"/>`;
+      }
+      s += `<line x1="40" y1="${y + 90}" x2="560" y2="${y + 90}" stroke="${fg}" stroke-opacity=".4"/>`;
+      s += `<circle cx="${100 + r() * 400}" cy="${80 + r() * 60}" r="3" fill="${fg}"/><circle cx="${100 + r() * 400}" cy="${480 + r() * 60}" r="2" fill="${fg}"/>`;
+      return s;
+    },
     split(r, [bg, fg, ac]) {
       const sx = 220 + r() * 160;
       let s = `<rect width="${S}" height="${S}" fill="${bg}"/>`;
@@ -97,10 +150,11 @@ N.cover = (() => {
   };
 
   /** Returns an SVG string for a release. */
+  let uidN = 0;
   const svg = (p, { label = true } = {}) => {
     const r = rng(p.id + ':cover');
     const pal = p.cover.pal;
-    const body = (styles[p.cover.style] || styles.orbit)(r, pal, p);
+    const body = (styles[p.cover.style] || styles.orbit)(r, pal, p, 'c' + (++uidN));
     const meta = label ? `<g font-family="JetBrains Mono, monospace" font-size="15" letter-spacing="2" fill="${pal[1]}" opacity=".85"><text x="32" y="44">${esc(p.artistName.toUpperCase().slice(0, 30))}</text><text x="568" y="574" text-anchor="end">${esc(p.title.toUpperCase().slice(0, 30))}</text></g>` : '';
     return `<svg class="cover-svg" viewBox="0 0 ${S} ${S}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Обложка: ${esc(p.artistName)} — ${esc(p.title)}" preserveAspectRatio="xMidYMid slice">${body}${meta}</svg>`;
   };

@@ -127,7 +127,7 @@ N.pages.catalog = (() => {
     return `<section class="cat">
       <header class="cat__head">
         <p class="mono muted" data-reveal>NOCTURNE / Каталог</p>
-        <h1 class="cat__title" data-reveal id="catTitle">${esc(h.t)}</h1>
+        <h1 class="cat__title" data-reveal id="catTitle" data-t="${esc(h.t)}">${esc(h.t)}</h1>
         <p class="cat__sub" data-reveal id="catSub">${h.sub}</p>
       </header>
       <nav class="genre-tabs" aria-label="Жанры">
@@ -170,7 +170,7 @@ N.pages.catalog = (() => {
     qs('#filterCount', root).textContent = n ? `(${n})` : '';
     const apply_ = qs('[data-apply]', root); if (apply_) apply_.textContent = `Показать ${list.length}`;
     const h = headTitle(state);
-    qs('#catTitle', root).textContent = h.t; qs('#catSub', root).innerHTML = h.sub;
+    const tEl = qs('#catTitle', root); if (tEl.dataset.t !== h.t) { tEl.dataset.t = h.t; tEl.textContent = h.t; } qs('#catSub', root).innerHTML = h.sub;
     qsa('.genre-tabs a', root).forEach(a => {
       const g = new URLSearchParams(a.getAttribute('href').split('?')[1] || '').get('genre');
       a.classList.toggle('is-active', g ? state.genre.length === 1 && state.genre[0] === g : !state.genre.length);

@@ -21,6 +21,7 @@
     UI.updateBadges(type.startsWith('cart:add') ? 'cart' : type === 'fav' ? 'fav' : null);
     UI.syncFavButtons();
     if (UI.openLayer === 'cart' || type.startsWith('cart') || type === 'order' || type === 'sync') UI.renderCartDrawer();
+    UI.refreshModal();
     const cur = R.current;
     if (cur?.page.onStore) cur.page.onStore(type, payload, qs('#main'));
   });
@@ -67,6 +68,8 @@
       case 'toggle-menu': UI.toggleMenu(); break;
       case 'rail-prev': UI.railStep(el, -1); break;
       case 'rail-next': UI.railStep(el, 1); break;
+      case 'quick-view': e.preventDefault(); UI.openModal(id); break;
+      case 'close-modal': UI.closeModal(); break;
       case 'to-top': window.scrollTo({ top: 0, behavior: 'smooth' }); break;
       default: {
         const cur = R.current;
@@ -100,8 +103,8 @@
     const typing = /input|textarea|select/i.test(document.activeElement.tagName);
     if (e.key === '/' && !typing) { e.preventDefault(); UI.openSearch(); }
     // focus trap for drawer
-    if (e.key === 'Tab' && UI.openLayer === 'cart') {
-      const f = [...qs('#cartDrawer').querySelectorAll('a,button:not([disabled]),input')];
+    if (e.key === 'Tab' && (UI.openLayer === 'cart' || UI.openLayer === 'modal')) {
+      const f = [...qs(UI.openLayer === 'cart' ? '#cartDrawer' : '#modalBox').querySelectorAll('a,button:not([disabled]),input')];
       if (!f.length) return;
       if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
       else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
@@ -110,7 +113,12 @@
 
   UI.renderFooter();
   UI.initHeader();
+  UI.initMega();
   UI.updateBadges();
+  N.fx.cursor();
+  N.fx.scroll();
+  N.fx.magnetic();
+  N.fx.intro();
   R.start();
   UI.observeReveals(qs('#siteFooter'));
 })();

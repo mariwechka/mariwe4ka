@@ -107,6 +107,7 @@ N.ui = (() => {
     if (openLayer === 'cart') closeCart();
     if (openLayer === 'search') closeSearch();
     if (openLayer === 'menu') toggleMenu(false);
+    if (openLayer === 'modal') closeModal();
   };
 
   /* ---------- cart drawer ---------- */
@@ -217,6 +218,65 @@ N.ui = (() => {
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   };
 
+  /* ---------- mega menu ---------- */
+  const initMega = () => {
+    const mega = qs('#mega'), trigger = qs('[data-mega]');
+    const latest = [...D.products].sort((a, b) => b.added.localeCompare(a.added))[0];
+    const count = f => D.products.filter(f).length;
+    mega.innerHTML = `<div class="mega__inner">
+      <div class="mega__col"><p class="mega__h mono">Жанры</p>${D.genres.map((g, i) => `<a href="#/catalog?genre=${g.id}"><span class="mono">${String(i + 1).padStart(2, '0')}</span>${g.name}<small class="mono">${count(p => p.genre === g.id)}</small></a>`).join('')}</div>
+      <div class="mega__col"><p class="mega__h mono">Формат</p>${D.formats.map(f => `<a href="#/catalog?format=${encodeURIComponent(f)}">${esc(f)}<small class="mono">${count(p => p.format === f)}</small></a>`).join('')}
+        <p class="mega__h mono">Подборки</p><a href="#/catalog?sort=popular">Популярное</a><a href="#/catalog?cond=M">Новые запечатанные</a><a href="#/catalog?max=3000">До 3 000 ₽</a><a href="#/catalog?stock=1">Только в наличии</a></div>
+      <div class="mega__col"><p class="mega__h mono">Коллекции</p>${D.collections.map(c => `<a href="#/collection/${c.id}"><i style="background:${c.color};box-shadow:inset 0 0 0 1px ${c.accent}"></i>${esc(c.name)}</a>`).join('')}</div>
+      <a class="mega__feat" href="#/release/${latest.id}">
+        <span class="mega__cover">${N.c.sleeve(latest)}</span>
+        <span class="mono">Только что приехало</span><b>${esc(latest.title)}</b><em>${esc(latest.artistName)}</em><span class="mono">${price(latest.price)}</span>
+      </a></div>`;
+    let t;
+    const open = () => { clearTimeout(t); if (matchMedia('(max-width: 860px)').matches) return; mega.classList.add('is-open'); trigger.setAttribute('aria-expanded', 'true'); };
+    const close = (delay = 160) => { clearTimeout(t); t = setTimeout(() => { mega.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); }, delay); };
+    [trigger, mega].forEach(el => { el.addEventListener('mouseenter', open); el.addEventListener('mouseleave', () => close()); });
+    trigger.addEventListener('focus', open);
+    mega.addEventListener('focusout', e => { if (!mega.contains(e.relatedTarget) && e.relatedTarget !== trigger) close(0); });
+    mega.addEventListener('click', e => { if (e.target.closest('a')) close(0); });
+    window.addEventListener('hashchange', () => close(0));
+  };
+
+  /* ---------- quick view modal ---------- */
+  let modalId = null;
+  const quickHtml = p => `
+    <button class="icon-btn modal__close" data-action="close-modal" aria-label="Закрыть">${N.c.icon.close}</button>
+    <div class="qv">
+      <div class="qv__media">${N.c.sleeve(p)}</div>
+      <div class="qv__info">
+        <p class="mono muted">${esc(p.genreName)} · ${p.year} · ${esc(p.label)}</p>
+        <h2 class="qv__title">${esc(p.title)}</h2>
+        <p class="qv__artist serif">${esc(p.artistName)}</p>
+        <div class="qv__price"><b>${price(p.price)}</b>${N.c.availability(p)}</div>
+        <dl class="specs specs--plain"><div><dt>Формат</dt><dd>${esc(p.format)}</dd></div><div><dt>Издание</dt><dd>${esc(p.edition)}</dd></div><div><dt>Пластинка</dt><dd>${N.c.cond(p.media)} · ${D.conditions[p.media].name}</dd></div><div><dt>Конверт</dt><dd>${N.c.cond(p.sleeve)} · ${D.conditions[p.sleeve].name}</dd></div></dl>
+        <p class="qv__desc">${esc(p.desc)}</p>
+        <div class="qv__buy">${S.available(p.id) > S.inCart(p.id) ? N.c.addBtn(p, { label: 'В корзину', cls: 'btn--accent btn--grow' }) : S.inCart(p.id) ? `<button class="btn btn--grow" data-action="open-cart">${N.c.icon.check}<span>Уже в корзине</span></button>` : '<button class="btn btn--ghost btn--grow" disabled>Продано</button>'}${N.c.favBtn(p, 'fav-btn--line')}</div>
+        <a class="link-arrow" href="#/release/${p.id}">Страница релиза ${N.c.icon.arrow}</a>
+      </div>
+    </div>`;
+  const openModal = id => {
+    const p = D.byId[id]; if (!p) return;
+    closeAll();
+    modalId = id; lastFocus = document.activeElement;
+    const m = qs('#modal'), box = qs('#modalBox');
+    box.innerHTML = quickHtml(p);
+    m.classList.add('is-open'); m.setAttribute('aria-hidden', 'false');
+    lock(true); openLayer = 'modal';
+    setTimeout(() => box.focus(), 50);
+  };
+  const closeModal = () => {
+    const m = qs('#modal');
+    m.classList.remove('is-open'); m.setAttribute('aria-hidden', 'true');
+    lock(false); openLayer = null; modalId = null;
+    lastFocus?.focus?.();
+  };
+  const refreshModal = () => { if (modalId) qs('#modalBox').innerHTML = quickHtml(D.byId[modalId]); };
+
   const renderFooter = () => {
     qs('#siteFooter').innerHTML = `
       <div class="footer__top">
@@ -233,5 +293,5 @@ N.ui = (() => {
       <div class="footer__bottom mono"><span>© 2011–2026 NOCTURNE Records</span><span>Сделано для тех, кто слушает альбомы целиком</span><button class="link-u" data-action="to-top">Наверх ↑</button></div>`;
   };
 
-  return { toast, openCart, closeCart, renderCartDrawer, toggleMenu, openSearch, closeSearch, closeAll, runSearch, updateBadges, syncFavButtons, flyToCart, observeReveals, initRails, railStep, setActiveNav, initHeader, renderFooter, get openLayer() { return openLayer; }, set searchSel(v) { searchSel = v; }, get searchSel() { return searchSel; } };
+  return { initMega, openModal, closeModal, refreshModal, toast, openCart, closeCart, renderCartDrawer, toggleMenu, openSearch, closeSearch, closeAll, runSearch, updateBadges, syncFavButtons, flyToCart, observeReveals, initRails, railStep, setActiveNav, initHeader, renderFooter, get openLayer() { return openLayer; }, set searchSel(v) { searchSel = v; }, get searchSel() { return searchSel; } };
 })();

@@ -18,6 +18,10 @@ N.pages.home = (() => {
         <span class="hero__line"><span>NOC</span></span>
         <span class="hero__line hero__line--2"><span>TURNE</span></span>
       </h1>
+      <p class="hero__title hero__title--ghost" aria-hidden="true">
+        <span class="hero__line"><span>NOC</span></span>
+        <span class="hero__line hero__line--2"><span>TURNE</span></span>
+      </p>
       <div class="hero__deck" id="heroDeck">
         <div class="deck">
           <div class="deck__sleeve" id="heroSleeve">${C.sleeve(p, { vinyl: false })}</div>

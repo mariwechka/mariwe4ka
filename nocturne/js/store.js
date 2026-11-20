@@ -2,7 +2,7 @@
 N.store = (() => {
   const KEY = 'nocturne:state:v1';
   const { storage } = N.utils;
-  const initial = { cart: [], favs: [], sold: {}, orders: [], subscribed: null };
+  const initial = { cart: [], favs: [], sold: {}, orders: [], subscribed: null, viewed: [] };
   let state = Object.assign({}, initial, storage.get(KEY, {}));
   // drop stale ids (data may change between versions)
   state.cart = state.cart.filter(i => N.data.byId[i.id]);
@@ -85,8 +85,11 @@ N.store = (() => {
   };
   const lastOrder = no => state.orders.find(o => o.no === no);
 
+  const markViewed = id => { state.viewed = [id, ...(state.viewed || []).filter(x => x !== id)].slice(0, 12); N.utils.storage.set(KEY, state); };
+  const viewed = (except) => (state.viewed || []).filter(x => x !== except).map(x => N.data.byId[x]).filter(Boolean);
+
   const subscribeNewsletter = email => { state.subscribed = email; commit('newsletter', email); };
   const subscribedEmail = () => state.subscribed;
 
-  return { subscribe, available, inCart, add, setQty, remove, clearCart, cartLines, cartCount, subtotal, FREE_SHIPPING, shippingOptions, shippingPrice, isFav, toggleFav, favs, placeOrder, lastOrder, subscribeNewsletter, subscribedEmail };
+  return { subscribe, available, inCart, add, setQty, remove, clearCart, cartLines, cartCount, subtotal, FREE_SHIPPING, shippingOptions, shippingPrice, isFav, toggleFav, favs, placeOrder, lastOrder, markViewed, viewed, subscribeNewsletter, subscribedEmail };
 })();

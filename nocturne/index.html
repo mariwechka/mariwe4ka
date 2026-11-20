@@ -6,6 +6,9 @@
   <title>NOCTURNE — виниловые пластинки</title>
   <meta name="description" content="NOCTURNE — независимый магазин виниловых пластинок: джаз, постпанк, электроника, хип-хоп, эксперимент и классика.">
   <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="NOCTURNE — виниловые пластинки">
+  <meta property="og:description" content="Независимый магазин винила: джаз, постпанк, электроника, хип-хоп, эксперимент и классика.">
+  <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a0a0a'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%238e1b27'/%3E%3Ccircle cx='32' cy='32' r='2' fill='%23ece6dc'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +17,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/fx.css">
 </head>
 <body>
   <a class="skip-link" href="#main">К содержимому</a>
@@ -25,7 +29,7 @@
         <span class="logo__word">NOCTURNE</span>
       </a>
       <nav class="main-nav" aria-label="Основная навигация">
-        <a href="#/catalog" data-nav="catalog">Каталог</a>
+        <a href="#/catalog" data-nav="catalog" data-mega aria-haspopup="true" aria-expanded="false">Каталог</a>
         <a href="#/new" data-nav="new">Новинки</a>
         <a href="#/collections" data-nav="collections">Коллекции</a>
         <a href="#/about" data-nav="about">About</a>
@@ -49,6 +53,7 @@
         </button>
       </div>
     </div>
+    <div class="mega" id="mega" aria-label="Каталог"></div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
@@ -100,6 +105,14 @@
     </div>
   </div>
 
+  <!-- Quick view modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Быстрый просмотр" aria-hidden="true">
+    <div class="modal__scrim" data-action="close-modal"></div>
+    <div class="modal__box" id="modalBox" tabindex="-1"></div>
+  </div>
+
+  <div class="curtain" id="curtain" aria-hidden="true"><div class="curtain__panel"><span class="curtain__disc"></span><p class="curtain__label" data-curtain-label></p><p class="mono curtain__meta">NOCTURNE · 33⅓</p></div></div>
+
   <div class="toasts" id="toasts" aria-live="polite"></div>
   <div class="grain" aria-hidden="true"></div>
 
@@ -109,6 +122,7 @@
   <script src="js/store.js"></script>
   <script src="js/components.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/fx.js"></script>
   <script src="js/pages/home.js"></script>
   <script src="js/pages/catalog.js"></script>
   <script src="js/pages/product.js"></script>

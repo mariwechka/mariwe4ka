@@ -12,14 +12,16 @@ N.c = (() => {
     arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>',
     arrowL: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>',
     bag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+    eye: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
     check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg>'
   };
 
   const disc = (p, cls = '') => `<span class="disc ${cls}" style="${cover.labelVars(p)}" aria-hidden="true"><span class="disc__label"><i></i></span></span>`;
 
   /** Sleeve + vinyl that slides out on hover */
+  const wear = p => p.sleeve === 'VG' ? 'is-worn is-worn--2' : p.sleeve === 'VG+' ? 'is-worn' : '';
   const sleeve = (p, { vinyl = true, cls = '', label = true } = {}) =>
-    `<span class="sleeve ${cls}">${vinyl ? disc(p) : ''}<span class="sleeve__art">${cover.svg(p, { label })}</span></span>`;
+    `<span class="sleeve ${cls}">${vinyl ? disc(p) : ''}<span class="sleeve__art ${wear(p)}">${cover.svg(p, { label })}</span></span>`;
 
   const favBtn = (p, cls = '') => {
     const on = N.store.isFav(p.id);
@@ -52,7 +54,7 @@ N.c = (() => {
         ${isNew(p) ? '<span class="tag tag--new">New</span>' : ''}
         ${out ? '<span class="tag tag--out">Sold out</span>' : ''}
       </a>
-      <div class="card__actions">${favBtn(p)}${out ? '' : `<button class="quick-add" data-action="add-to-cart" data-id="${p.id}" aria-label="Добавить в корзину: ${esc(p.title)}">${icon.plus}</button>`}</div>
+      <div class="card__actions">${favBtn(p)}<button class="quick-add quick-view" data-action="quick-view" data-id="${p.id}" aria-label="Быстрый просмотр: ${esc(p.title)}">${icon.eye}</button>${out ? '' : `<button class="quick-add" data-action="add-to-cart" data-id="${p.id}" aria-label="Добавить в корзину: ${esc(p.title)}">${icon.plus}</button>`}</div>
       <div class="card__body">
         ${showIndex ? `<span class="card__index mono">${pad(i + 1)}</span>` : ''}
         <h3 class="card__title"><a href="#/release/${p.id}">${esc(p.title)}</a></h3>
@@ -137,5 +139,5 @@ N.c = (() => {
     return `<div class="ship-meter"><p class="mono">${left > 0 ? `До бесплатной доставки — ${price(left)}` : 'Доставка бесплатно ✓'}</p><div class="ship-meter__bar"><i style="width:${pct}%"></i></div></div>`;
   };
 
-  return { icon, disc, sleeve, favBtn, availability, addBtn, cond, card, row, sectionHead, rail, qty, empty, marquee, cartLine, shippingMeter, isNew, records };
+  return { icon, disc, sleeve, wear, favBtn, availability, addBtn, cond, card, row, sectionHead, rail, qty, empty, marquee, cartLine, shippingMeter, isNew, records };
 })();
