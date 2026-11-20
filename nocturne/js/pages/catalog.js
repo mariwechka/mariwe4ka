@@ -214,7 +214,7 @@ N.pages.catalog = (() => {
     search.addEventListener('input', debounce(() => { state.q = search.value.trim(); update(); }, 160));
     qs('#catSort', el).addEventListener('change', e => { state.sort = e.target.value; update({ keepShown: true }); });
     update();
-    return () => { document.documentElement.classList.remove('is-locked'); root = null; };
+    return () => { document.documentElement.classList.remove('is-locked'); document.body.classList.remove('filters-open'); root = null; };
   };
 
   const toggleFilters = on => {
