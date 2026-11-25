@@ -55,7 +55,7 @@ def state():
     return {"mode": core.get("mode"), "emergency_stop": core.get("emergency_stop"), "health": core.get("health"),
             "worker_alive": core.now() - (core.get("worker_heartbeat") or 0) < 60, "ai": llm.available(), "gmail": I.gmail_configured(),
             "telegram": bool(core.get("telegram").get("chat_id")), "pending_approvals": core.q1("SELECT count(*) n FROM approvals WHERE status='pending'")["n"],
-            "ui_language": core.get("ui_language"), "missing_data": [m for m in K.kb()["missing_data"] if m["key"] not in core.get("owner_answers")]}
+            "ui_language": core.get("ui_language"), "missing_data": [m for m in K.kb()["missing_data"] if m["key"] not in K.answers()]}
 
 
 @app.get("/api/dashboard")

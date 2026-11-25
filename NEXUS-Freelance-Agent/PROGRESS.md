@@ -1,6 +1,8 @@
 # PROGRESS
 
-_Last updated: 2026-11-25 (session 1)_
+_Last updated: 2026-11-25 (session 1, + owner answers)_
+
+Owner answers (languages, experience since 2022, Odlar Yurdu 2022–2026, payouts, $15/h) are in `data/knowledge_base.json` → `confirmed_answers`. Rule: agents never quote prices; a price question moves the client to "Awaiting owner" and sends a critical Telegram alert.
 
 ## Status by stage
 | # | Stage | State | Verified how |

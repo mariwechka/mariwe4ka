@@ -1,7 +1,7 @@
 {
  "owner": {
   "name": "Mari",
-  "full_legal_name": null,
+  "full_legal_name": "Mari",
   "gender": "female",
   "email": "marifreelance2758@gmail.com",
   "telegram": "@mrwechka",
@@ -10,7 +10,7 @@
   "portfolio_az": "https://mariwechka.org/az/index.html",
   "work_format": "remote",
   "client_geography": "worldwide",
-  "bio_confirmed": "University graduate in digital design with hands-on experience in web design, graphics and 3D interior visualisation. Works quickly and pays close attention to detail.",
+  "bio_confirmed": "Designer working across digital design since 2022: web design, graphics and 3D interior visualisation. Studied design (all disciplines) at Odlar Yurdu University, 2022–2026. Works quickly and pays close attention to detail.",
   "reply_time_confirmed": "Replies within one working day"
  },
  "skills": [
@@ -668,40 +668,19 @@
  "honesty_rules": [
   "All portfolio projects are self-initiated concept projects (fictional brands); never present them as paid client work.",
   "No reviews, client counts, certificates or years of experience are confirmed — never claim them.",
-  "Do not claim language proficiency levels that are not confirmed."
+  "Do not claim language proficiency levels that are not confirmed.",
+  "Never quote a price, rate or estimate to a client. If a client asks about price/budget/cost, Mari answers personally (the agent tells the client she will reply).",
+  "Language levels: Russian and Azerbaijani native, English B1, Turkish B1 — never claim more."
  ],
- "missing_data": [
-  {
-   "key": "full_legal_name",
-   "question": "Full legal name (needed only by platforms that require it for payouts/KYC)"
-  },
-  {
-   "key": "country",
-   "question": "Country of residence (affects which platforms allow registration and payouts)"
-  },
-  {
-   "key": "languages",
-   "question": "Languages you speak and your level in each (English, Russian, Azerbaijani, Turkish...)"
-  },
-  {
-   "key": "rates",
-   "question": "Price ranges you approve per service (e.g. landing page from X USD, logo from Y USD) and hourly rate"
-  },
-  {
-   "key": "years_experience",
-   "question": "Years of professional experience (only if you want it stated)"
-  },
-  {
-   "key": "education",
-   "question": "University name / degree year (the site only says \"university graduate in digital design\")"
-  },
-  {
-   "key": "real_clients",
-   "question": "Any real paid client projects or reviews you can share (otherwise the agents describe your work as concept projects)"
-  },
-  {
-   "key": "payout_methods",
-   "question": "Payout methods available to you (PayPal, Payoneer, bank card, crypto...)"
-  }
- ]
+ "missing_data": [],
+ "confirmed_answers": {
+  "full_legal_name": "Mari",
+  "country": "Azerbaijan (works remotely with clients from any country, accepts payment in any currency)",
+  "languages": "Russian — native; Azerbaijani — native; English — B1 (intermediate); Turkish — B1 (intermediate)",
+  "years_experience": "Working in design since 2022",
+  "education": "Odlar Yurdu University (Baku), design — all disciplines, 2022–2026",
+  "real_clients": "No paid client projects yet — all portfolio works are self-initiated concept projects",
+  "rates": "Hourly rate 15 USD (for platform profiles only). Prices are never quoted to clients by agents: Mari discusses price personally.",
+  "payout_methods": "Preferred: bank card. PayPal does not work for her. Payoneer: not yet opened, may try. Prefer platforms that pay out to a card."
+ }
 }

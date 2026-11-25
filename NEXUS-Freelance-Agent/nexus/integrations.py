@@ -160,7 +160,7 @@ def gmail_auth_url(redirect_uri):
     core.vault_set("gmail_oauth_state", state)
     return "https://accounts.google.com/o/oauth2/v2/auth?" + httpx.QueryParams(
         client_id=core.secret("GMAIL_CLIENT_ID"), redirect_uri=redirect_uri, response_type="code", scope=SCOPES,
-        access_type="offline", prompt="consent", state=state, login_hint=core.get("owner_answers").get("email", "marifreelance2758@gmail.com")).__str__()
+        access_type="offline", prompt="consent", state=state, login_hint="marifreelance2758@gmail.com").__str__()
 
 
 def gmail_exchange(code, state, redirect_uri):

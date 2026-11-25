@@ -326,7 +326,7 @@ async function resolve(id, approve, edits){
 
 V.portfolio = async () => {
   const k = await api("/portfolio"), miss = k.missing_data, ans = k.owner_answers || {};
-  return `<div class="card" style="margin-bottom:16px"><h3>${t("missing")}</h3><div class="grid g2">${miss.map(m=>`<label>${esc(m.question)}<input data-k="${m.key}" class="ans" value="${esc(ans[m.key]||"")}"></label>`).join("")}</div>
+  return `<div class="card" style="margin-bottom:16px"><h3>${t("missing")}</h3><div class="grid g2">${[...miss.map(m=>[m.key,m.question]),...Object.keys(ans).filter(x=>!miss.some(m=>m.key===x)).map(x=>[x,x.replaceAll("_"," ")])].map(([key,q])=>`<label>${esc(q)}<input data-k="${key}" class="ans" value="${esc(ans[key]||"")}"></label>`).join("")}</div>
     <label class="mt">${LANG==="ru"?"Одобренные цены, USD (JSON), напр. {\"web\":[500,3000],\"branding\":[300,1500]}":"Approved rates, USD (JSON), e.g. {\"web\":[500,3000]}"}<input id="rates" value='${esc(JSON.stringify(k.approved_rates||{}))}'></label>
     <button class="btn pri mt" onclick="saveAnswers()">${t("save")}</button></div>
   <div class="grid g2"><div class="card"><h3>Mari</h3><p>${esc(k.owner.bio_confirmed)}</p><div class="small muted">${esc(k.owner.email)} · ${esc(k.owner.telegram)} · <a href="${k.owner.portfolio}" target="_blank" rel="noopener">mariwechka.org</a></div>

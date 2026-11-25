@@ -56,7 +56,7 @@ DEFAULTS = {
     "thresholds": {"high": 85, "good": 70, "review": 50},
     "proposals": {"max_per_day": 15, "min_score": 70, "min_budget_usd": 0, "max_bid_cost_usd": 0,
                   "priority_categories": [], "excluded_categories": [], "allowed_platforms": [],
-                  "languages": ["en", "ru"], "work_hours": [0, 24]},
+                  "languages": ["en", "ru", "az", "tr"], "work_hours": [0, 24]},
     "outreach": {"max_per_day": 5, "followup_days": 4, "city": "", "categories": ["cafe", "restaurant", "beauty", "hairdresser"]},
     "llm": {"provider": "anthropic", "default_model": "claude-opus-5-5", "fallback_model": "claude-sonnet-5-5",
             "models": {},                      # per-agent override, e.g. {"profile": "claude-sonnet-5-5"}

@@ -186,6 +186,20 @@ def test_negotiation_ready_to_order_creates_deal_card_and_scam_alert(monkeypatch
     assert agents.add_manual_message(lid2, "Before we start you need to pay a deposit for access to the project")["intent"] == "scam"
 
 
+def test_price_question_goes_to_owner_not_client(monkeypatch):
+    monkeypatch.setattr(llm, "available", lambda: False)
+    levels = []
+    monkeypatch.setattr(I, "notify", lambda msg, level="important", data=None, buttons=None: levels.append((level, msg)))
+    sent = []
+    monkeypatch.setattr(I, "gmail_send", lambda *a, **k: sent.append(a) or {"id": "x"})
+    core.put("mode", "full")
+    lid = agents.upsert_lead(company="Cafe", email="c@cafe.az", source="email", stage=5)
+    agents.add_manual_message(lid, "Hi! How much would a landing page cost?")
+    assert any(l == "critical" and "price" in m for l, m in levels)
+    assert core.q1("SELECT stage FROM leads WHERE id=?", lid)["stage"] == 9 and not sent
+    assert K.answers()["languages"].startswith("Russian — native") and not core.get("owner_answers")
+
+
 def test_declined_client_is_opted_out_and_never_emailed(monkeypatch):
     monkeypatch.setattr(llm, "available", lambda: False)
     lid = agents.upsert_lead(company="No Thanks Ltd", email="a@nothanks.com", source="osm", stage=5)

@@ -306,7 +306,7 @@ def write_proposal(o, matched, variant, extra=""):
     prompt = (f"Write a proposal/cover letter in {LANG_NAMES.get(lang, 'English')} from Mari (freelance designer) for this job.\n"
               f"{VARIANTS[variant]}\nAddress the client by name only if the post gives it. No flattery, no long intro, no clichés like "
               f"'I am excited' or 'I came across your post'. Sound like a real person. Mention one concrete idea specific to this job. "
-              f"Give a price only if approved_rates_usd covers this kind of work; otherwise invite a quick call to scope it. "
+              f"Do not mention any price or rate — Mari discusses budget personally; invite a short chat to scope the work instead. "
               f"Link only to mariwechka.org pages from the knowledge base.\n{extra}\n\nOWNER KNOWLEDGE BASE:\n{_kb_context(matched)}\n\n"
               f"JOB POST (platform {o['platform_slug']}, budget {o.get('budget_min')}-{o.get('budget_max')} {o.get('currency')}):\n"
               + K.untrusted(f"{o['title']}\n\n{o.get('description') or ''}"))
@@ -464,7 +464,7 @@ def registration_start(slug):
         return {"status": acc["status"], "note": "account already exists — no duplicate created"}
     if p["status"] in ("closed", "unreachable", "suspicious"):
         return {"status": "blocked", "note": f"platform is {p['status']}"}
-    email = core.get("owner_answers").get("email") or K.kb()["owner"]["email"]
+    email = K.kb()["owner"]["email"]
     core.vault_set(f"pw:{slug}", core.new_password())
     core.x("INSERT OR REPLACE INTO accounts(platform_slug,email,status,cred_ref,updated) VALUES(?,?,?,?,?)", slug, email, "awaiting_owner", f"pw:{slug}", core.now())
     steps = ["Open the sign-up page (button below or 'Open visible browser').", f"Use email {email} and the generated password (Platforms → Reveal password).",
@@ -733,6 +733,7 @@ NEG_SCHEMA = {"type": "object", "additionalProperties": False,
                              "summary": {"type": "string"}, "budget": {"type": ["string", "null"]}, "deadline": {"type": ["string", "null"]},
                              "requirements": {"type": "array", "items": {"type": "string"}}, "reply": {"type": "string"}, "owner_needed": {"type": "boolean"}}}
 
+PRICE_Q = re.compile(r"price|pricing|\bcost|how much|\brates?\b|\bquote|budget|сколько|стоимост|цен[аыуе]|бюджет|расценк|qiymət|neçəyə|fiyat|ücret|ne kadar", re.I)
 INTENT_STAGE = {"question": 6, "interested": 7, "negotiating_terms": 8, "ready_to_order": 9, "declined": 13}
 
 
@@ -790,7 +791,17 @@ def negotiate(message_id):
     if intent == "ready_to_order":
         create_deal_card(lead["id"])
     md = J(m["data"], {})
-    if data["reply"] and m["channel"] == "email":
+    if PRICE_Q.search(m["body"] or "") or intent == "negotiating_terms":
+        # owner's rule: price talks are hers — the agent only drafts a holding reply, never sends it
+        data["owner_needed"] = True
+        set_stage(lead["id"], 9, "Client asked about price — owner replies")
+        url = (core.q1("SELECT url FROM opportunities WHERE id=?", lead["opportunity_id"]) or {}).get("url") if lead["opportunity_id"] else None
+        core.log("negotiation", f"💰 {who} asks about price — please reply yourself.\n«{(m['body'] or '')[:300]}»" + (f"\n{url}" if url else ""),
+                 "critical", lead_id=lead["id"])
+    if data["owner_needed"]:
+        if data["reply"]:
+            core.x("UPDATE messages SET data=? WHERE id=?", json.dumps(md | {"analysis": data, "draft_reply": data["reply"]}, ensure_ascii=False), m["id"])
+    elif data["reply"] and m["channel"] == "email":
         action = "reply_routine" if intent in ("question", "interested") and not data["owner_needed"] else "reply"
         send_email_action("negotiation", action, m["sender"], "Re: " + (m["subject"] or ""), data["reply"], lead["id"],
                           thread_id=md.get("thread_id"), in_reply_to=md.get("message_id"))

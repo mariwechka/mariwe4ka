@@ -55,10 +55,14 @@ def kb():
     return json.loads(core.KB_PATH.read_text(encoding="utf-8"))
 
 
+def answers():
+    return {**kb().get("confirmed_answers", {}), **core.get("owner_answers")}
+
+
 def owner_profile():
     """KB merged with the owner's saved answers to missing-data questions."""
     data = dict(kb())
-    data["owner_answers"] = core.get("owner_answers")
+    data["owner_answers"] = answers()
     data["approved_rates"] = core.get("approved_rates")
     return data
 
