@@ -237,7 +237,8 @@ V.proposals = async () => {
       <button class="btn sm" onclick="copy($('#pb-${p.id}').value)">${t("copy")}</button>
       ${p.status!=="sent"?`<button class="btn sm" onclick="api('/proposals/${p.id}',{method:'PATCH',body:{body:$('#pb-${p.id}').value}}).then(()=>toast('saved'))">${t("save")}</button>`:""}
       ${p.url?`<a class="btn sm" href="${safeUrl(p.url)}" target="_blank" rel="noopener" onclick="copy($('#pb-${p.id}').value)">${LANG==="ru"?"Копировать и открыть заказ":"Copy & open job"} ↗</a>`:""}
-      ${p.status!=="sent"&&p.channel!=="email"?`<button class="btn sm pri" onclick="post('/proposals/${p.id}/sent').then(route)">✓ ${t("markSent")}</button>`:""}
+      ${p.status!=="sent"&&p.platform_slug==="freelancer"?`<button class="btn sm pri" onclick="api('/proposals/${p.id}',{method:'PATCH',body:{body:$('#pb-${p.id}').value}}).then(()=>post('/proposals/${p.id}/bid')).then(r=>{toast(r.result);route()})">⚡ ${LANG==="ru"?"Отправить через API":"Send via API"}</button>`:""}
+      ${p.status!=="sent"&&p.channel!=="email"?`<button class="btn sm" onclick="post('/proposals/${p.id}/sent').then(route)">✓ ${t("markSent")}</button>`:""}
       ${p.status!=="sent"&&p.channel==="email"?`<button class="btn sm pri" onclick="post('/proposals/${p.id}/send').then(r=>{toast(r.result);route()})">✉ Send</button>`:""}
       <span class="small muted">${p.sent_at?"sent "+ago(p.sent_at)+" ago":"created "+ago(p.created)+" ago"}</span></div></div>`).join("") || `<div class="empty">${t("nothing")}</div>`}</div>`;
 };

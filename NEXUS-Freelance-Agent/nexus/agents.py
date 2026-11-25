@@ -362,7 +362,46 @@ def proposal_draft(opportunity_id, allow_rule_based=False):
     core.x("UPDATE opportunities SET status='proposal_ready' WHERE id=?", o["id"])
     core.log("proposal", f"Proposal ready [{o['score']}] {o['title'][:80]} — send it on {o['platform_slug']}: {o['url']}", "info",
              proposal_id=pid, opportunity_id=o["id"])
+    if o["platform_slug"] == "freelancer":
+        try:
+            return {"proposal_id": pid, "bid": freelancer_bid(pid)}
+        except Exception as e:  # the proposal is saved; a failed bid must be visible, not retried blindly
+            core.log("proposal", f"Freelancer bid failed — send it manually: {e}"[:400], "important", proposal_id=pid)
+            return {"proposal_id": pid, "bid": "failed"}
     return {"proposal_id": pid}
+
+
+def freelancer_bid(pid, owner_clicked=False):
+    """Owner's rule: bid amount = client's minimum budget; the cover letter itself never names a price."""
+    p = core.q1("SELECT p.*, o.external_id, o.budget_min, o.budget_max, o.currency, o.status ostatus, o.score FROM proposals p "
+                "JOIN opportunities o ON o.id=p.opportunity_id WHERE p.id=?", pid)
+    if not p or p["status"] == "sent":
+        return "already sent"
+    token = core.secret("FREELANCER_TOKEN")
+    if not token:
+        return "no FREELANCER_TOKEN — send manually"
+    amount = p["budget_min"] or p["budget_max"]
+    if not amount:
+        return "no client budget — send manually"
+    cfg = core.get("proposals")
+    if not owner_clicked:
+        decision, reason = core.guard("proposal", "send_proposal")
+        if decision != "allow":
+            return f"waiting for you: {reason}"
+        if p["score"] < cfg["min_score"] or core.to_usd(amount, p["currency"]) < cfg["min_budget_usd"]:
+            return "below your minimum score/budget"
+        if sends_today("freelancer_api") >= cfg["max_per_day"]:
+            return "daily limit reached"
+        h = time.gmtime().tm_hour + 4  # work hours are Baku time (UTC+4)
+        if not cfg["work_hours"][0] <= h % 24 < cfg["work_hours"][1]:
+            return "outside work hours"
+    elif core.get("emergency_stop"):
+        return "emergency stop is active"
+    sources.freelancer_bid(token, p["external_id"], amount, cfg.get("bid_period_days", 7), p["body"])
+    core.x("UPDATE proposals SET channel='freelancer_api' WHERE id=?", pid)
+    proposal_mark_sent(pid)
+    core.log("proposal", f"Bid sent on Freelancer.com: {amount:g} {p['currency']} — {p['subject'][:70]}", "important", proposal_id=pid)
+    return "sent"
 
 
 def proposal_mark_sent(pid):

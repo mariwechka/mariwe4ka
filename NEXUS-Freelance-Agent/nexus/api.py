@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from . import core, agents, integrations as I, knowledge as K, llm, worker
 
 J = agents.J
-SECRET_NAMES = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "TELEGRAM_BOT_TOKEN", "GMAIL_CLIENT_ID", "GMAIL_CLIENT_SECRET", "BRAVE_API_KEY"]
+SECRET_NAMES = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "TELEGRAM_BOT_TOKEN", "GMAIL_CLIENT_ID", "GMAIL_CLIENT_SECRET", "BRAVE_API_KEY", "FREELANCER_TOKEN"]
 EDITABLE = set(core.DEFAULTS) - {"platform_boost", "analytics_insights", "health", "last_daily_report", "last_run", "emergency_stop"}
 
 
@@ -244,6 +244,8 @@ def proposal_action(pid: int, action: str):
         raise HTTPException(404)
     if action == "sent":
         return {"ok": agents.proposal_mark_sent(pid)}
+    if action == "bid":
+        return {"result": agents.freelancer_bid(pid, owner_clicked=True)}
     if action == "send":
         return {"result": agents.send_email_action("proposal", "send_proposal", p["email"], p["subject"], p["body"], p["lead_id"], pid)}
     raise HTTPException(400)

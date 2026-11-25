@@ -23,7 +23,7 @@ def ops(**kw):
 SEED_PLATFORMS = [
     # slug, name, url, region, kind, relevance 0-10, commission %, bid cost, reputation 0-10, ops, adapter, notes
     dict(slug="freelancer", name="Freelancer.com", url="https://www.freelancer.com", region="global", kind="marketplace", relevance=7, commission=10, bid_cost="free bids/month, paid plans", reputation=7,
-         ops=ops(search="api", details="api", send_proposal="api (OAuth app needed)"), adapter="freelancer", notes="Official public REST API for project search. Bidding via API requires an approved OAuth app + account."),
+         ops=ops(search="api", details="api", send_proposal="api"), adapter="freelancer", notes="Official REST API: search (public) + bids (with FREELANCER_TOKEN). Bid price = client's minimum budget."),
     dict(slug="upwork", name="Upwork", url="https://www.upwork.com", region="global", kind="marketplace", relevance=9, commission=10, bid_cost="Connects (paid)", reputation=9,
          ops=ops(send_proposal="forbidden", search="manual"), adapter=None, notes="ToS forbid automated proposals/scraping; API access needs partner approval. ID verification required. Agents prepare proposals for manual sending."),
     dict(slug="fiverr", name="Fiverr", url="https://www.fiverr.com", region="global", kind="gig-marketplace", relevance=9, commission=20, bid_cost="none", reputation=9,
@@ -148,6 +148,20 @@ def freelancer():
                             kind="hourly" if p.get("type") == "hourly" else "gig", language=p.get("language")))
         time.sleep(1)  # be gentle with the public API
     return out
+
+
+def freelancer_bid(token, project_id, amount, period_days, description):
+    """Place a bid with the owner's own access token. shortcut: field names follow the public API (unauth probe
+    confirmed the endpoint); the first real bid is the live check — errors surface in Approvals/Activity."""
+    h = {**UA, "freelancer-oauth-v1": token}
+    me = httpx.get("https://www.freelancer.com/api/users/0.1/self/", headers=h, timeout=25)
+    me.raise_for_status()
+    r = httpx.post("https://www.freelancer.com/api/projects/0.1/bids/", headers=h, timeout=25,
+                   json={"project_id": int(project_id), "bidder_id": me.json()["result"]["id"], "amount": float(amount),
+                         "period": int(period_days), "milestone_percentage": 100, "description": description})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Freelancer refused the bid: {r.text[:300]}")
+    return r.json().get("result", {})
 
 
 def flru():

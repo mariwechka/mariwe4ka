@@ -200,6 +200,22 @@ def test_price_question_goes_to_owner_not_client(monkeypatch):
     assert K.answers()["languages"].startswith("Russian — native") and not core.get("owner_answers")
 
 
+def test_freelancer_auto_bid_uses_min_budget_and_respects_mode(monkeypatch):
+    fake_llm(monkeypatch, {"language": "en", "subject": "s", "body": "Cover letter without any price.", "idea": "", "price_note": ""})
+    monkeypatch.setattr(sources, "fetch", lambda slug, data=None: [{**JOB, "external_id": "555"}])
+    bids = []
+    monkeypatch.setattr(sources, "freelancer_bid", lambda tok, pid, amount, period, desc: bids.append((pid, amount, period)) or {})
+    core.vault_set("FREELANCER_TOKEN", "t")
+    agents.job_discovery("freelancer")
+    oid = core.q1("SELECT id FROM opportunities")["id"]
+    assert agents.proposal_draft(oid)["bid"].startswith("waiting for you")  # manual mode: nothing sent
+    pid = core.q1("SELECT id FROM proposals")["id"]
+    core.put("mode", "smart")
+    assert agents.freelancer_bid(pid) == "sent" and bids == [("555", 400, 7)]
+    assert agents.freelancer_bid(pid) == "already sent" and len(bids) == 1
+    assert core.q1("SELECT stage FROM leads")["stage"] == 5
+
+
 def test_declined_client_is_opted_out_and_never_emailed(monkeypatch):
     monkeypatch.setattr(llm, "available", lambda: False)
     lid = agents.upsert_lead(company="No Thanks Ltd", email="a@nothanks.com", source="osm", stage=5)
