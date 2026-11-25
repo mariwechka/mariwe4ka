@@ -362,45 +362,36 @@ def proposal_draft(opportunity_id, allow_rule_based=False):
     core.x("UPDATE opportunities SET status='proposal_ready' WHERE id=?", o["id"])
     core.log("proposal", f"Proposal ready [{o['score']}] {o['title'][:80]} — send it on {o['platform_slug']}: {o['url']}", "info",
              proposal_id=pid, opportunity_id=o["id"])
-    if o["platform_slug"] == "freelancer":
-        try:
-            return {"proposal_id": pid, "bid": freelancer_bid(pid)}
-        except Exception as e:  # the proposal is saved; a failed bid must be visible, not retried blindly
-            core.log("proposal", f"Freelancer bid failed — send it manually: {e}"[:400], "important", proposal_id=pid)
-            return {"proposal_id": pid, "bid": "failed"}
+    if o["platform_slug"] == "freelancer" and core.secret("FREELANCER_TOKEN") and o["budget_min"]:
+        # Freelancer's API terms prohibit automatic bidders → every bid is one tap by the owner (UI or Telegram)
+        core.request_approval("freelancer_bid", f"Send bid {o['budget_min']:g} {o['currency']}: {o['title'][:80]}",
+                              {"proposal_id": pid, "url": o["url"], "amount": o["budget_min"], "currency": o["currency"], "body": data["body"]},
+                              dedupe_key=f"bid:{pid}")
     return {"proposal_id": pid}
 
 
-def freelancer_bid(pid, owner_clicked=False):
-    """Owner's rule: bid amount = client's minimum budget; the cover letter itself never names a price."""
-    p = core.q1("SELECT p.*, o.external_id, o.budget_min, o.budget_max, o.currency, o.status ostatus, o.score FROM proposals p "
+def freelancer_bid(pid):
+    """Owner-initiated only (button or Telegram tap). Amount = client's minimum budget; the letter names no price."""
+    p = core.q1("SELECT p.*, o.external_id, o.budget_min, o.budget_max, o.currency FROM proposals p "
                 "JOIN opportunities o ON o.id=p.opportunity_id WHERE p.id=?", pid)
     if not p or p["status"] == "sent":
         return "already sent"
+    if core.get("emergency_stop"):
+        return "emergency stop is active"
     token = core.secret("FREELANCER_TOKEN")
     if not token:
         return "no FREELANCER_TOKEN — send manually"
     amount = p["budget_min"] or p["budget_max"]
     if not amount:
         return "no client budget — send manually"
-    cfg = core.get("proposals")
-    if not owner_clicked:
-        decision, reason = core.guard("proposal", "send_proposal")
-        if decision != "allow":
-            return f"waiting for you: {reason}"
-        if p["score"] < cfg["min_score"] or core.to_usd(amount, p["currency"]) < cfg["min_budget_usd"]:
-            return "below your minimum score/budget"
-        if sends_today("freelancer_api") >= cfg["max_per_day"]:
-            return "daily limit reached"
-        h = time.gmtime().tm_hour + 4  # work hours are Baku time (UTC+4)
-        if not cfg["work_hours"][0] <= h % 24 < cfg["work_hours"][1]:
-            return "outside work hours"
-    elif core.get("emergency_stop"):
-        return "emergency stop is active"
-    sources.freelancer_bid(token, p["external_id"], amount, cfg.get("bid_period_days", 7), p["body"])
+    try:
+        sources.freelancer_bid(token, p["external_id"], amount, core.get("proposals").get("bid_period_days", 7), p["body"])
+    except Exception as e:
+        core.log("proposal", f"Freelancer bid failed — send it manually: {e}"[:400], "important", proposal_id=pid)
+        return f"failed: {e}"[:200]
     core.x("UPDATE proposals SET channel='freelancer_api' WHERE id=?", pid)
     proposal_mark_sent(pid)
-    core.log("proposal", f"Bid sent on Freelancer.com: {amount:g} {p['currency']} — {p['subject'][:70]}", "important", proposal_id=pid)
+    core.log("proposal", f"Bid sent on Freelancer.com: {amount:g} {p['currency']} — {p['subject'][:70]}", "info", proposal_id=pid)
     return "sent"
 
 
@@ -476,6 +467,10 @@ def resolve_approval(aid, approve, via="ui", edits=None):
             core.x("UPDATE accounts SET status='registered', updated=? WHERE platform_slug=?", core.now(), d["slug"])
             core.enqueue("profile_generate", {"slug": d["slug"]}, f"profile:{d['slug']}")
             result = "account marked registered; profile generation queued"
+        elif a["kind"] == "freelancer_bid":
+            if "body" in (edits or {}):
+                core.x("UPDATE proposals SET body=? WHERE id=? AND status!='sent'", d["body"], d["proposal_id"])
+            result = freelancer_bid(d["proposal_id"])
         elif a["kind"] == "deal":
             set_stage(d["lead_id"], 10, "Owner accepted the order")
             if d.get("budget_usd"):

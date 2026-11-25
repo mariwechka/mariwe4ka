@@ -239,5 +239,6 @@ def request_approval(kind, title, details, dedupe_key=None):
                 kind, title, json.dumps(details, ensure_ascii=False, default=str), dedupe_key, now())
     except sqlite3.IntegrityError:
         return None
-    log("supervisor", f"Approval needed: {title}", "important", approval_id=aid, kind=kind)
+    preview = f"\n\n{details['body'][:700]}\n{details.get('url') or ''}" if isinstance(details, dict) and details.get("body") else ""
+    log("supervisor", f"Approval needed: {title}{preview}", "important", approval_id=aid, kind=kind)
     return aid

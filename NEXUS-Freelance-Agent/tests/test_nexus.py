@@ -200,20 +200,22 @@ def test_price_question_goes_to_owner_not_client(monkeypatch):
     assert K.answers()["languages"].startswith("Russian — native") and not core.get("owner_answers")
 
 
-def test_freelancer_auto_bid_uses_min_budget_and_respects_mode(monkeypatch):
+def test_freelancer_bid_needs_owner_tap_never_automatic(monkeypatch):
     fake_llm(monkeypatch, {"language": "en", "subject": "s", "body": "Cover letter without any price.", "idea": "", "price_note": ""})
     monkeypatch.setattr(sources, "fetch", lambda slug, data=None: [{**JOB, "external_id": "555"}])
     bids = []
-    monkeypatch.setattr(sources, "freelancer_bid", lambda tok, pid, amount, period, desc: bids.append((pid, amount, period)) or {})
+    monkeypatch.setattr(sources, "freelancer_bid", lambda tok, pid, amount, period, desc: bids.append((pid, amount, desc)) or {})
     core.vault_set("FREELANCER_TOKEN", "t")
+    core.put("mode", "full")  # even full autopilot must not bid by itself
     agents.job_discovery("freelancer")
-    oid = core.q1("SELECT id FROM opportunities")["id"]
-    assert agents.proposal_draft(oid)["bid"].startswith("waiting for you")  # manual mode: nothing sent
-    pid = core.q1("SELECT id FROM proposals")["id"]
-    core.put("mode", "smart")
-    assert agents.freelancer_bid(pid) == "sent" and bids == [("555", 400, 7)]
+    while worker.run_one():
+        pass
+    assert bids == []
+    a = core.q1("SELECT * FROM approvals WHERE kind='freelancer_bid'")
+    assert agents.resolve_approval(a["id"], True, "telegram", {"body": "Edited letter"}) == "sent"
+    assert bids == [("555", 400, "Edited letter")]
+    pid = json.loads(a["details"])["proposal_id"]
     assert agents.freelancer_bid(pid) == "already sent" and len(bids) == 1
-    assert core.q1("SELECT stage FROM leads")["stage"] == 5
 
 
 def test_declined_client_is_opted_out_and_never_emailed(monkeypatch):

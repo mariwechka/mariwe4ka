@@ -299,6 +299,7 @@ V.approvals = async () => {
   return `<div class="tabs">${["pending","approved","rejected",""].map(s=>`<button class="${s===st?"on":""}" onclick="S.ast='${s}';route()">${s||"all"}</button>`).join("")}</div>
   <div class="list">${as.map(a => { const d = a.details||{}; return `<div class="item"><div class="row between"><h4>${esc(a.title)}</h4><span><span class="tag v">${esc(a.kind)}</span><span class="tag">${esc(a.status)}</span><span class="small muted">${ago(a.created)}</span></span></div>
     ${a.kind==="send_email"?`<div class="small muted">to ${esc(d.to)} · ${esc(d.reason||"")}</div><input id="as-${a.id}" value="${esc(d.subject)}" style="width:100%;margin:6px 0"><textarea id="ab-${a.id}">${esc(d.body)}</textarea>`:""}
+    ${a.kind==="freelancer_bid"?`<div class="small muted">${esc(d.amount)} ${esc(d.currency)} · <a href="${safeUrl(d.url)}" target="_blank" rel="noopener">${t("open")} ↗</a></div><textarea id="ab-${a.id}">${esc(d.body)}</textarea>`:""}
     ${a.kind==="registration"?`<ol>${(d.steps||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ol><div class="small muted">${esc(d.why_owner||"")}</div>
       <div class="row"><a class="btn sm" href="${safeUrl(d.url)}" target="_blank" rel="noopener">${t("open")} ↗</a><button class="btn sm" onclick="pAct('${esc(d.slug)}','browser')">${t("browser")}</button><button class="btn sm" onclick="pAct('${esc(d.slug)}','reveal')">${t("reveal")}</button></div>`:""}
     ${a.kind==="deal"?dealView(a, d):""}
@@ -321,7 +322,7 @@ function dealView(a, d){
 }
 async function resolve(id, approve, edits){
   const s = $("#as-"+id), b = $("#ab-"+id);
-  if (s && b) edits = {...(edits||{}), subject:s.value, body:b.value};
+  if (b) edits = {...(edits||{}), body:b.value, ...(s ? {subject:s.value} : {})};
   const r = await post(`/approvals/${id}`, {approve, edits}); toast(r.result); refreshState(); route();
 }
 

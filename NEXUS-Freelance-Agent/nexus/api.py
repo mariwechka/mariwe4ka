@@ -245,7 +245,7 @@ def proposal_action(pid: int, action: str):
     if action == "sent":
         return {"ok": agents.proposal_mark_sent(pid)}
     if action == "bid":
-        return {"result": agents.freelancer_bid(pid, owner_clicked=True)}
+        return {"result": agents.freelancer_bid(pid)}
     if action == "send":
         return {"result": agents.send_email_action("proposal", "send_proposal", p["email"], p["subject"], p["body"], p["lead_id"], pid)}
     raise HTTPException(400)

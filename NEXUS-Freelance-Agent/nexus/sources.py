@@ -23,7 +23,7 @@ def ops(**kw):
 SEED_PLATFORMS = [
     # slug, name, url, region, kind, relevance 0-10, commission %, bid cost, reputation 0-10, ops, adapter, notes
     dict(slug="freelancer", name="Freelancer.com", url="https://www.freelancer.com", region="global", kind="marketplace", relevance=7, commission=10, bid_cost="free bids/month, paid plans", reputation=7,
-         ops=ops(search="api", details="api", send_proposal="api"), adapter="freelancer", notes="Official REST API: search (public) + bids (with FREELANCER_TOKEN). Bid price = client's minimum budget."),
+         ops=ops(search="api", details="api", send_proposal="api (owner tap only)"), adapter="freelancer", notes="API terms prohibit automatic bidders: each bid is sent by the owner's tap (UI/Telegram) via FREELANCER_TOKEN. Bid = client's minimum budget."),
     dict(slug="upwork", name="Upwork", url="https://www.upwork.com", region="global", kind="marketplace", relevance=9, commission=10, bid_cost="Connects (paid)", reputation=9,
          ops=ops(send_proposal="forbidden", search="manual"), adapter=None, notes="ToS forbid automated proposals/scraping; API access needs partner approval. ID verification required. Agents prepare proposals for manual sending."),
     dict(slug="fiverr", name="Fiverr", url="https://www.fiverr.com", region="global", kind="gig-marketplace", relevance=9, commission=20, bid_cost="none", reputation=9,
