@@ -1,0 +1,11 @@
+# Local or VPS: `docker compose up -d`, then open http://127.0.0.1:8765
+# On a VPS keep the 127.0.0.1 binding and reach it through an SSH tunnel or a reverse proxy with TLS + NEXUS_ACCESS_TOKEN.
+services:
+  nexus:
+    build: .
+    restart: unless-stopped        # watchdog: restarts on crash and after reboot
+    env_file: [.env]
+    ports: ["127.0.0.1:8765:8765"]
+    volumes: ["nexus-data:/data"]  # database, encrypted vault, backups survive rebuilds
+volumes:
+  nexus-data:

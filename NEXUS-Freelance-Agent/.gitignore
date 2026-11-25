@@ -1,0 +1,10 @@
+# runtime data: database, encryption key, backups — never commit
+data/*
+!data/knowledge_base.json
+.env
+*.key
+master.key
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
