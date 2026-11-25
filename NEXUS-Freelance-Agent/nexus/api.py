@@ -27,12 +27,18 @@ TOKEN = os.environ.get("NEXUS_ACCESS_TOKEN")
 
 @app.middleware("http")
 async def auth(request: Request, call_next):
-    # Local use needs no login (bound to 127.0.0.1). On a server set NEXUS_ACCESS_TOKEN.
-    if TOKEN and request.url.path.startswith("/api") and not request.url.path.startswith("/api/gmail/callback"):
-        given = request.headers.get("authorization", "").removeprefix("Bearer ") or request.cookies.get("nexus_token", "")
+    # The computer itself needs no login. Other devices (phone on Wi-Fi, server) need NEXUS_ACCESS_TOKEN:
+    # open http://<pc-ip>:8765/?token=... once — it is remembered in a cookie.
+    local = request.client and request.client.host in ("127.0.0.1", "::1") and not os.environ.get("NEXUS_IN_DOCKER")
+    via_link = request.query_params.get("token", "")
+    if TOKEN and not local and request.url.path.startswith("/api") and not request.url.path.startswith("/api/gmail/callback"):
+        given = request.headers.get("authorization", "").removeprefix("Bearer ") or request.cookies.get("nexus_token", "") or via_link
         if not hmac.compare_digest(given, TOKEN):
             return JSONResponse({"detail": "unauthorized"}, 401)
-    return await call_next(request)
+    response = await call_next(request)
+    if TOKEN and via_link and hmac.compare_digest(via_link, TOKEN):
+        response.set_cookie("nexus_token", TOKEN, max_age=365 * 86400, httponly=True, samesite="strict")
+    return response
 
 
 def rows(sql, *a, jcols=()):

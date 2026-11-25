@@ -306,6 +306,18 @@ def test_budget_parser():
     assert sources.parse_budget("no budget") == (None, None)
 
 
+def test_phone_access_needs_token(monkeypatch):
+    from fastapi.testclient import TestClient
+    os.environ["NEXUS_WORKER"] = "0"
+    from nexus import api
+    monkeypatch.setattr(api, "TOKEN", "s3cret")
+    with TestClient(api.app) as c:  # TestClient's host is "testclient", i.e. not the computer itself
+        assert c.get("/api/state").status_code == 401
+        assert c.get("/?token=wrong").status_code == 200 and c.get("/api/state").status_code == 401
+        c.get("/?token=s3cret")
+        assert c.get("/api/state").status_code == 200  # remembered via cookie
+
+
 def test_api_smoke():
     from fastapi.testclient import TestClient
     os.environ["NEXUS_WORKER"] = "0"
