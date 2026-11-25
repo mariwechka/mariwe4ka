@@ -1,0 +1,686 @@
+{
+ "owner": {
+  "name": "Mari",
+  "full_legal_name": "Mari",
+  "gender": "female",
+  "email": "marifreelance2758@gmail.com",
+  "telegram": "@mrwechka",
+  "portfolio": "https://mariwechka.org/",
+  "portfolio_ru": "https://mariwechka.org/ru/",
+  "portfolio_az": "https://mariwechka.org/az/index.html",
+  "work_format": "remote",
+  "client_geography": "worldwide",
+  "bio_confirmed": "Designer working across digital design since 2022: web design, graphics and 3D interior visualisation. Studied design (all disciplines) at Odlar Yurdu University, 2022–2026. Works quickly and pays close attention to detail.",
+  "reply_time_confirmed": "Replies within one working day"
+ },
+ "skills": [
+  "Visual concepts",
+  "Web and UI/UX design",
+  "3D interior visualisation",
+  "Graphic design",
+  "Typography",
+  "Design systems",
+  "Prototyping",
+  "Art direction"
+ ],
+ "tools": [
+  "Figma",
+  "Adobe Photoshop",
+  "Adobe Illustrator",
+  "Adobe InDesign",
+  "Blender",
+  "HTML / CSS / JS",
+  "React",
+  "TypeScript",
+  "Three.js",
+  "GSAP",
+  "Node.js",
+  "3ds Max",
+  "Corona Renderer",
+  "PowerPoint"
+ ],
+ "disciplines": [
+  "Graphic design",
+  "Web design",
+  "UI/UX",
+  "Interior design / 3D",
+  "Branding",
+  "Digital art"
+ ],
+ "services": [
+  {
+   "key": "web",
+   "name": "Web design",
+   "pitch": "Websites with character that are still easy to read, browse and buy from.",
+   "includes": [
+    "Landing pages and multi-page sites",
+    "Responsive for every screen",
+    "Motion and micro-interactions",
+    "Front-end build or developer handoff"
+   ]
+  },
+  {
+   "key": "uiux",
+   "name": "UI/UX design",
+   "pitch": "Interfaces where the user’s path is designed before the button colours.",
+   "includes": [
+    "User flows",
+    "Prototypes",
+    "Design system and UI kit",
+    "Every screen state"
+   ]
+  },
+  {
+   "key": "branding",
+   "name": "Branding & visual identity",
+   "pitch": "A brand’s visual language, from the logo to the rules for using it.",
+   "includes": [
+    "Logo and mark",
+    "Colour and typography",
+    "Brand applications",
+    "Brand guidelines"
+   ]
+  },
+  {
+   "key": "graphic",
+   "name": "Graphic design",
+   "pitch": "Print and digital pieces that look like parts of one system.",
+   "includes": [
+    "Posters",
+    "Presentations",
+    "Social media and carousels",
+    "Print and packaging"
+   ]
+  },
+  {
+   "key": "digital",
+   "name": "Digital design",
+   "pitch": "Graphics for screens: generative visuals, banners, covers, launch visuals.",
+   "includes": [
+    "Generative graphics",
+    "Covers and banners",
+    "Social media visuals",
+    "Motion snippets"
+   ]
+  },
+  {
+   "key": "3d",
+   "name": "3D visualization",
+   "pitch": "Interiors and objects visualized, so you can see the idea before it is built.",
+   "includes": [
+    "Interior scenes",
+    "Product visualization",
+    "Materials and lighting",
+    "Final renders"
+   ]
+  }
+ ],
+ "process": [
+  "Intro: a short call or chat about the task, timing and expectations",
+  "Concept: references, first sketches, the logic",
+  "Design: develop the chosen direction, share stages along the way",
+  "Handoff: final files, mockups or a live site, plus guidance"
+ ],
+ "site_languages": [
+  "en",
+  "ru",
+  "az"
+ ],
+ "projects": [
+  {
+   "slug": "veltrix",
+   "name": "VELTRIX V1",
+   "category": "websites",
+   "description": "A digital premiere for a concept electric sports car, with a live 3D opening, a scroll-led presentation and a V1 configurator.",
+   "project_type": "Concept automotive website",
+   "role": "Art direction, web design, 3D and development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "Three.js",
+    "ImageGen"
+   ],
+   "features": [
+    "Live 3D opening scene",
+    "360° model rotation",
+    "3D configurator (paint, wheels, trims) with shareable builds",
+    "10 pages, EN/RU/AZ",
+    "Reduced-motion and no-WebGL fallbacks",
+    "Mobile touch controls"
+   ],
+   "target_audience": "Premium product brands, automotive, tech launches",
+   "fits": [
+    "3d website",
+    "product launch",
+    "configurator",
+    "interactive website",
+    "premium animated website",
+    "landing page",
+    "automotive"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/veltrix/cover-1600.webp",
+    "https://mariwechka.org/assets/img/works/veltrix/detail-764.webp",
+    "https://mariwechka.org/assets/img/works/veltrix/interior-764.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/veltrix.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "nocturne",
+   "name": "NOCTURNE",
+   "category": "websites",
+   "description": "Case study: an online vinyl record store that reads like an independent music magazine and works as a full-featured shop.",
+   "project_type": "Website, e-commerce",
+   "role": "UX/UI design, art direction, front-end",
+   "technologies": [
+    "Figma",
+    "HTML",
+    "CSS",
+    "JavaScript"
+   ],
+   "features": [
+    "11 screens from home to order number",
+    "Filters, sorting, search, cart, favourites, checkout",
+    "Filters stored in URL; empty/sold-out/error states designed",
+    "~70 KB compressed, zero external libraries",
+    "36 generative record sleeves drawn by code"
+   ],
+   "target_audience": "Collectors, music lovers 18–40, mobile shoppers",
+   "fits": [
+    "online store",
+    "e-commerce",
+    "shop redesign",
+    "catalog",
+    "editorial design",
+    "ui/ux",
+    "music"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/nocturne/hero-1600.webp",
+    "https://mariwechka.org/assets/img/works/nocturne/home-1440.webp",
+    "https://mariwechka.org/assets/img/works/nocturne/genres-1600.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/nocturne.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "abyss",
+   "name": "ABYSS",
+   "category": "websites",
+   "description": "An interactive exhibition about life in the deep ocean. Scrolling controls the dive, the lighting and the camera.",
+   "project_type": "Interactive digital exhibition",
+   "role": "Art direction, UX/UI, motion and 3D development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "Three.js",
+    "WebGL",
+    "Web Audio"
+   ],
+   "features": [
+    "Scroll-driven dive through 5 ocean zones",
+    "Interactive 3D specimen",
+    "Field guide of 8 creatures",
+    "3 languages",
+    "Image fallbacks without WebGL"
+   ],
+   "target_audience": "Museums, education, science communication",
+   "fits": [
+    "interactive website",
+    "museum",
+    "education",
+    "3d",
+    "storytelling",
+    "scroll animation"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/abyss/cover-1440.webp",
+    "https://mariwechka.org/assets/img/works/abyss/surface-1440.webp",
+    "https://mariwechka.org/assets/img/works/abyss/twilight-720.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/abyss.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "aether",
+   "name": "AETHER",
+   "category": "websites",
+   "description": "A concept website for an architecture studio, with an interactive exhibition, project catalogue and journal.",
+   "project_type": "Architecture studio website",
+   "role": "Art direction, UX/UI, motion and front-end",
+   "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Node.js",
+    "ImageGen"
+   ],
+   "features": [
+    "60 pages, static build with Node.js",
+    "RU/EN/AZ",
+    "Catalogue with gallery and list views, filter state in URL",
+    "Journal with essays",
+    "Reduced-motion support"
+   ],
+   "target_audience": "Architecture and interior studios, real estate, design firms",
+   "fits": [
+    "architecture",
+    "studio website",
+    "portfolio website",
+    "multi-page website",
+    "catalog",
+    "real estate",
+    "interior studio"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/aether/cover-1440.webp",
+    "https://mariwechka.org/assets/img/works/aether/selected-1440.webp",
+    "https://mariwechka.org/assets/img/works/aether/catalog-1440.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/aether.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "apartment",
+   "name": "APARTMENT",
+   "category": "interior",
+   "description": "A warm contemporary 80 m² apartment where natural textures, lighting and everyday scenarios form one cohesive interior.",
+   "project_type": "Interior design & 3D visualization",
+   "role": "Interior concept, 3D visualization",
+   "technologies": [
+    "3ds Max",
+    "Corona Renderer"
+   ],
+   "features": [
+    "80 m², 5 zones",
+    "Wood, stone and integrated lighting palette"
+   ],
+   "target_audience": "Homeowners, developers, renovation clients",
+   "fits": [
+    "interior design",
+    "3d visualization",
+    "apartment",
+    "renovation",
+    "rendering"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/apartment/frame-1-1400.jpg",
+    "https://mariwechka.org/assets/img/works/apartment/frame-2-1400.jpg"
+   ],
+   "url": "https://mariwechka.org/en/works/apartment.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "living-warm",
+   "name": "Modern Living Room — Warm Tones",
+   "category": "interior",
+   "description": "A contemporary living-room visualization in warm tones, shaped by texture, soft light and an unhurried rhythm.",
+   "project_type": "3D interior visualization",
+   "role": "3D modelling, lighting & visualization",
+   "technologies": [
+    "3ds Max",
+    "Corona Renderer"
+   ],
+   "features": [
+    "Warm timber/terracotta palette",
+    "Layered lighting"
+   ],
+   "target_audience": "Homeowners, furniture brands, interior designers",
+   "fits": [
+    "interior",
+    "3d render",
+    "living room",
+    "visualization"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/living-warm/frame-1-1240.jpg",
+    "https://mariwechka.org/assets/img/works/living-warm/frame-2-1240.jpg"
+   ],
+   "url": "https://mariwechka.org/en/works/living-warm.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "living-room",
+   "name": "Modern Living Room",
+   "category": "interior",
+   "description": "A contemporary living room with deep textures, generous seating and a considered lighting composition.",
+   "project_type": "3D interior visualization",
+   "role": "3D modelling, visualization",
+   "technologies": [
+    "3ds Max",
+    "Corona Renderer"
+   ],
+   "features": [
+    "Two key interior views",
+    "Textured wall materials"
+   ],
+   "target_audience": "Homeowners, interior designers",
+   "fits": [
+    "interior",
+    "3d render",
+    "living room"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/living-room/frame-1-1240.jpg",
+    "https://mariwechka.org/assets/img/works/living-room/frame-2-1240.jpg"
+   ],
+   "url": "https://mariwechka.org/en/works/living-room.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "warm-stone",
+   "name": "Warm Stone Coffee",
+   "category": "interior",
+   "description": "An interior visualization of a coffee space in warm stone and soft natural tones.",
+   "project_type": "3D interior visualization",
+   "role": "3D modelling, materials, lighting",
+   "technologies": [
+    "3ds Max",
+    "Corona Renderer"
+   ],
+   "features": [
+    "Coffee-shop interior concept",
+    "Material palette: warm stone, sand, graphite"
+   ],
+   "target_audience": "Cafés, coffee shops, hospitality",
+   "fits": [
+    "cafe",
+    "coffee shop",
+    "restaurant interior",
+    "hospitality",
+    "3d visualization"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/warm-stone/frame-1-1240.jpg",
+    "https://mariwechka.org/assets/img/works/warm-stone/frame-2-1240.jpg"
+   ],
+   "url": "https://mariwechka.org/en/works/warm-stone.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "neurolink",
+   "name": "NEUROLINK",
+   "category": "presentations",
+   "description": "The Architecture of Human Thought. Fifteen interactive scenes on neurotechnology for an international conference.",
+   "project_type": "Interactive web presentation",
+   "role": "Story, art direction, motion design and development",
+   "technologies": [
+    "Three.js",
+    "WebGL",
+    "JavaScript",
+    "SVG",
+    "ImageGen"
+   ],
+   "features": [
+    "15 interactive scenes, 16:9",
+    "Standalone offline HTML",
+    "Speaker notes window, autoplay",
+    "Interactive explanations of BCI methods"
+   ],
+   "target_audience": "Conferences, science/tech companies, speakers",
+   "fits": [
+    "presentation",
+    "interactive presentation",
+    "conference",
+    "pitch",
+    "science",
+    "tech"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/neurolink/cover-1200.webp",
+    "https://mariwechka.org/assets/img/works/neurolink/neuron-1200.webp",
+    "https://mariwechka.org/assets/img/works/neurolink/signals-1200.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/neurolink.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "chronos",
+   "name": "CHRONOS",
+   "category": "presentations",
+   "description": "The Art of Time. An interactive premiere for a fictional watch brand and its C-01 mechanical chronograph.",
+   "project_type": "Interactive web presentation",
+   "role": "Story, art direction, 3D and development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "GSAP",
+    "Three.js",
+    "ImageGen"
+   ],
+   "features": [
+    "15 widescreen scenes",
+    "360° product rotation, 3 finishes switchable in 3D",
+    "Fullscreen, keyboard, autoplay controls"
+   ],
+   "target_audience": "Investors, distributors, premium product brands",
+   "fits": [
+    "investor presentation",
+    "product presentation",
+    "animated presentation",
+    "luxury",
+    "3d product"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/chronos/cover-1536.webp",
+    "https://mariwechka.org/assets/img/works/chronos/opening-650.webp",
+    "https://mariwechka.org/assets/img/works/chronos/movement-650.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/chronos.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "common-ground",
+   "name": "COMMON GROUND",
+   "category": "presentations",
+   "description": "An animated concept presentation for an urban space with a café, bookshop and cultural programme.",
+   "project_type": "Concept presentation",
+   "role": "Story, art direction, design and animation",
+   "technologies": [
+    "PowerPoint",
+    "ImageGen"
+   ],
+   "features": [
+    "15 animated slides (in Russian)",
+    "Identity: wordmark, packaging, cups, posters, tote",
+    "Floor plan and revenue model"
+   ],
+   "target_audience": "Investors and partners of hospitality / cultural venues",
+   "fits": [
+    "pitch deck",
+    "powerpoint",
+    "investor deck",
+    "cafe",
+    "business plan presentation",
+    "branding"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/common-ground/slide-07-1280.jpg",
+    "https://mariwechka.org/assets/img/works/common-ground/slide-12-1280.jpg"
+   ],
+   "url": "https://mariwechka.org/en/works/common-ground.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "lumera",
+   "name": "LUMERA",
+   "category": "brandbooks",
+   "description": "An interactive brand book for a festival of contemporary art, light and installations. Sixteen chapters span the illuminated opening scene, identity applications and posters.",
+   "project_type": "Interactive brand book",
+   "role": "Art direction, web design and development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "GSAP",
+    "ScrollTrigger",
+    "Lenis",
+    "ImageGen"
+   ],
+   "features": [
+    "16 chapters",
+    "Symbol geometry and 5-colour palette",
+    "Poster series, passes, wristbands",
+    "Interactive mockups"
+   ],
+   "target_audience": "Festivals, events, cultural organisations",
+   "fits": [
+    "brand identity",
+    "brandbook",
+    "festival",
+    "event branding",
+    "posters",
+    "logo"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/lumera/cover-1440.webp",
+    "https://mariwechka.org/assets/img/works/lumera/construction-1268.webp",
+    "https://mariwechka.org/assets/img/works/lumera/palette-1268.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/lumera.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "nexus",
+   "name": "NEXUS",
+   "category": "brandbooks",
+   "description": "A cinematic interactive brand book for an experimental game studio. Sixteen chapters cover the NEXUS visual identity, game worlds and digital applications.",
+   "project_type": "Interactive brand book",
+   "role": "Art direction, web design and development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "GSAP",
+    "Lenis",
+    "Three.js",
+    "ImageGen"
+   ],
+   "features": [
+    "N monogram construction",
+    "Merchandise and campaign posters",
+    "Interactive site mockups"
+   ],
+   "target_audience": "Game studios, tech startups",
+   "fits": [
+    "brand identity",
+    "game studio",
+    "logo",
+    "brandbook",
+    "merch",
+    "startup branding"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/nexus/cover-1440.webp",
+    "https://mariwechka.org/assets/img/works/nexus/construction-1266.webp",
+    "https://mariwechka.org/assets/img/works/nexus/merch-1266.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/nexus.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "solva",
+   "name": "SOLVA",
+   "category": "brandbooks",
+   "description": "An interactive brand book for a premium skincare brand. From the Less, but better philosophy to packaging, printed materials and a digital storefront.",
+   "project_type": "Interactive brand book",
+   "role": "Art direction, web design and development",
+   "technologies": [
+    "React",
+    "TypeScript",
+    "GSAP",
+    "Lenis",
+    "ImageGen"
+   ],
+   "features": [
+    "Wordmark and typography system",
+    "Packaging and print",
+    "Responsive storefront concept"
+   ],
+   "target_audience": "Beauty, cosmetics, premium consumer brands",
+   "fits": [
+    "beauty",
+    "cosmetics",
+    "skincare",
+    "packaging",
+    "brand identity",
+    "logo",
+    "brandbook",
+    "beauty salon"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/solva/cover-1440.webp",
+    "https://mariwechka.org/assets/img/works/solva/wordmark-1262.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/solva.html",
+   "year": 2026,
+   "is_concept": true
+  },
+  {
+   "slug": "straylane",
+   "name": "STRAYLANE",
+   "category": "brandbooks",
+   "description": "An animated brand book in 16 chapters for skatewear label STRAYLANE. The handwritten SL monogram ties together apparel, a skate deck, packaging and digital mockups.",
+   "project_type": "Interactive brand book",
+   "role": "Visual identity, art direction and development",
+   "technologies": [
+    "SVG",
+    "HTML",
+    "CSS",
+    "JavaScript"
+   ],
+   "features": [
+    "Handwritten SL monogram",
+    "Apparel, packaging, skate deck applications",
+    "Desktop and mobile mockups"
+   ],
+   "target_audience": "Streetwear, apparel, youth brands",
+   "fits": [
+    "logo",
+    "streetwear",
+    "apparel",
+    "clothing brand",
+    "brand identity",
+    "monogram"
+   ],
+   "images": [
+    "https://mariwechka.org/assets/img/works/straylane/cover-1600.webp",
+    "https://mariwechka.org/assets/img/works/straylane/logo-system-1528.webp",
+    "https://mariwechka.org/assets/img/works/straylane/merch-706.webp"
+   ],
+   "url": "https://mariwechka.org/en/works/straylane.html",
+   "year": 2026,
+   "is_concept": true
+  }
+ ],
+ "honesty_rules": [
+  "All portfolio projects are self-initiated concept projects (fictional brands); never present them as paid client work.",
+  "No reviews, client counts, certificates or years of experience are confirmed — never claim them.",
+  "Do not claim language proficiency levels that are not confirmed.",
+  "Never quote a price, rate or estimate to a client. If a client asks about price/budget/cost, Mari answers personally (the agent tells the client she will reply).",
+  "Language levels: Russian and Azerbaijani native, English B1, Turkish B1 — never claim more."
+ ],
+ "missing_data": [],
+ "confirmed_answers": {
+  "full_legal_name": "Mari",
+  "country": "Azerbaijan (works remotely with clients from any country, accepts payment in any currency)",
+  "languages": "Russian — native; Azerbaijani — native; English — B1 (intermediate); Turkish — B1 (intermediate)",
+  "years_experience": "Working in design since 2022",
+  "education": "Odlar Yurdu University (Baku), design — all disciplines, 2022–2026",
+  "real_clients": "No paid client projects yet — all portfolio works are self-initiated concept projects",
+  "rates": "Hourly rate 15 USD (for platform profiles only). Prices are never quoted to clients by agents: Mari discusses price personally.",
+  "payout_methods": "Preferred: bank card. PayPal does not work for her. Payoneer: not yet opened, may try. Prefer platforms that pay out to a card."
+ }
+}
