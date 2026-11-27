@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100c0a">
+  <meta name="description" content="Выберите услугу Dukhovskaya и подготовьте сообщение для личной переписки в Telegram.">
+  <title>Запись — Dukhovskaya</title>
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="module" src="../assets/site.js"></script>
+</head>
+<body data-page="booking">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="../" aria-label="Dukhovskaya, главная"><span class="brand-sigil" aria-hidden="true">✧</span><span>DUKHOVSKAYA</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-lines" aria-hidden="true"></span><span class="sr-only">Меню</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <a href="../">Главная</a><a href="../services/">Услуги</a><a href="../reviews/">Отзывы</a><a class="mobile-book" href="../booking/" aria-current="page">Запись</a>
+      </nav>
+      <a class="button button-outline header-book" href="../booking/" aria-current="page">Записаться</a>
+    </div>
+  </header>
+  <main id="main">
+    <div class="shell booking-layout">
+      <section class="booking-intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="hairline"></span> Личное обращение</p>
+        <h1 id="page-title">Запись <em>на практику</em></h1>
+        <p class="booking-lede">Выберите услугу и напишите несколько слов о запросе. Если вы пока не определились, выберите «Помочь с выбором».</p>
+        <div class="booking-image"><img src="../assets/rituals.webp" alt="" width="512" height="512" fetchpriority="high"><span aria-hidden="true">✧</span></div>
+      </section>
+      <section class="form-panel" aria-labelledby="form-title">
+        <h2 id="form-title">Ваш запрос</h2>
+        <form id="booking-form" method="post">
+          <label for="booking-service">Услуга</label>
+          <div class="select-wrap"><select id="booking-service" name="service"><option value="">Помочь с выбором</option></select></div>
+          <div class="booking-price" id="booking-price" aria-live="polite" hidden></div>
+          <label for="booking-name">Как к вам обращаться?</label>
+          <input id="booking-name" name="name" autocomplete="given-name" maxlength="80" placeholder="Ваше имя" required>
+          <label for="booking-message">Ваш вопрос <span>(по желанию)</span></label>
+          <textarea id="booking-message" name="message" rows="4" maxlength="800" placeholder="Коротко опишите ситуацию"></textarea>
+          <p class="form-note">Текст останется на странице, пока вы не скопируете его или не откроете Telegram.</p>
+          <button class="button button-primary form-submit" type="submit"><span class="button-star" aria-hidden="true">✧</span> Подготовить сообщение</button>
+        </form>
+        <section class="booking-result" id="booking-result" aria-labelledby="result-title" hidden>
+          <h3 id="result-title" tabindex="-1">Сообщение готово</h3>
+          <p class="result-text" id="result-text"></p>
+          <div class="result-actions">
+            <a class="button button-primary" id="booking-telegram" href="#" target="_blank" rel="noopener noreferrer" hidden>Открыть Telegram</a>
+            <button class="button button-outline" id="booking-copy" type="button">Скопировать текст</button>
+          </div>
+          <p class="form-note" id="booking-contact-note"></p>
+          <p class="copy-status" id="copy-status" role="status"></p>
+        </section>
+        <noscript><p class="form-note">Для подготовки сообщения нужен JavaScript.</p></noscript>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="wordmark" href="../"><span class="brand-sigil" aria-hidden="true">✧</span><span>DUKHOVSKAYA</span></a>
+      <nav aria-label="Навигация в подвале"><a href="../services/">Услуги</a><a href="../reviews/">Отзывы</a><a href="../booking/">Запись</a></nav>
+      <span class="footer-caption">Частная магическая практика</span>
+    </div>
+  </footer>
+</body>
+</html>
